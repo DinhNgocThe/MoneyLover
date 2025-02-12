@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Expense Management</string>
+    <string name="vietnamese">Vietnamese</string>
+    <string name="english">English</string>
+    <string name="logo">Logo</string>
+    <string name="money_lover">Money Lover</string>
+    <string name="choose_language">Choose language</string>
+    <string name="btn_close">Nút x</string>
+    <string name="vietnam_flag">VietNam flag</string>
+    <string name="uk_flag">United-Kingdom flag</string>
+    <string name="change_language">Change language</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

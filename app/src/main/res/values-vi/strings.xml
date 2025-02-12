@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Expense Management</string>
+    <string name="vietnamese">Tiếng Việt</string>
+    <string name="english">Tiếng Anh</string>
+    <string name="logo">Biểu tượng</string>
+    <string name="money_lover">Money Lover</string>
+    <string name="choose_language">Chọn ngôn ngữ</string>
+    <string name="btn_close">Button close</string>
+    <string name="vietnam_flag">Cờ Việt Nam</string>
+    <string name="uk_flag">Cờ Anh Quốc</string>
+    <string name="change_language">Đổi ngôn ngữ</string>
+</resources>
