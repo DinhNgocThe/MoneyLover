@@ -3,12 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#F0F0F0</color>
-    <color name="light_green">#EEF7F1</color>
+    <color name="light_green">#D8ECDF</color>
     <color name="light_orange">#FEF6ED</color>
     <color name="orange">#C04F15</color>
     <color name="main_color_dark">#077B1A</color>
     <color name="main_color">#259B36</color>
     <color name="main_text">#000000</color>
     <color name="main_text_white">#FFFFFF</color>
-    <color name="button_green">#53B175</color>
+    <color name="button_green">#479B65</color>
 </resources>
