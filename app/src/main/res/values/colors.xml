@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="grey">#F0F0F0</color>
+    <color name="grey">#E6E6E6</color>
     <color name="light_green">#D8ECDF</color>
     <color name="light_orange">#FEF6ED</color>
     <color name="orange">#C04F15</color>
@@ -10,5 +10,5 @@
     <color name="main_color">#259B36</color>
     <color name="main_text">#000000</color>
     <color name="main_text_white">#FFFFFF</color>
-    <color name="button_green">#479B65</color>
+    <color name="button_green">#31B849</color>
 </resources>

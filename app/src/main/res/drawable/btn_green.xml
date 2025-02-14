@@ -10,7 +10,7 @@
             <item android:top="7dp" android:bottom="7dp">
                 <shape>
                     <padding android:left="15dp" android:right="15dp" />
-                    <corners android:radius="12dp"/>
+                    <corners android:radius="23dp"/>
                     <solid android:color="@color/button_green"/>
                 </shape>
             </item>

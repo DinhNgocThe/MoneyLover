@@ -10,4 +10,8 @@
     <string name="vietnam_flag">Cờ Việt Nam</string>
     <string name="uk_flag">Cờ Anh Quốc</string>
     <string name="change_language">Đổi ngôn ngữ</string>
+    <string name="login_view_pager">Đây là các lợi ích của ứng dụng</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="login">Đăng nhập</string>
+    <string name="button_back">Quay lại trang trước</string>
 </resources>

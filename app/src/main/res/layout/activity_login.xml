@@ -5,14 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.LoginActivity">
 
     <ImageView
         android:id="@+id/imgLogoLoginActivity"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="50dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,20 +32,48 @@
         app:layout_constraintStart_toEndOf="@+id/imgLogoLoginActivity"
         app:layout_constraintTop_toTopOf="@+id/imgLogoLoginActivity" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnChangeLanguageLoginActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginEnd="20dp"
-        android:paddingBottom="1dp"
-        android:background="@drawable/btn_grey"
-        android:fontFamily="@font/main_font_bold"
-        android:textSize="16sp"
-        android:textColor="@color/main_color"
-        android:text="@string/vietnamese"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/txtMoneyLoverLoginActivity"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpLoginActivity"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
+        android:foregroundGravity="center"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtMoneyLoverLoginActivity" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogoLoginActivity" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUpLoginActivity"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/sign_up"
+        android:textColor="@color/main_text_white"
+        android:fontFamily="@font/main_font_bold"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_green"
+        app:layout_constraintBottom_toTopOf="@+id/btnLoginLoginActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLoginLoginActivity"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/login"
+        android:textColor="@color/main_color_dark"
+        android:fontFamily="@font/main_font_bold"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:background="@drawable/btn_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

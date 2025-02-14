@@ -49,6 +49,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //Material
     implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 }

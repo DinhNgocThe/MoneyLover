@@ -9,6 +9,8 @@
     <string name="vietnam_flag">VietNam flag</string>
     <string name="uk_flag">United-Kingdom flag</string>
     <string name="change_language">Change language</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_view_pager">Here are the benefits of the app</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="button_back">Back to previous</string>
 </resources>
