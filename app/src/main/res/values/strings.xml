@@ -13,4 +13,11 @@
     <string name="sign_up">Sign up</string>
     <string name="login">Login</string>
     <string name="button_back">Back to previous</string>
+    <string name="email">Email</string>
+    <string name="create_account">Create Account</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="welcome">Welcome to Money Lover, track your spending and save smarter.</string>
+    <string name="or_continue_with">Or continue with</string>
+    <string name="continue_with_google">Continue with Google</string>
 </resources>

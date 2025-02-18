@@ -4,31 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bottomsheets.SignUpBottomSheetFragment">
+    tools:context=".fragments.SignUpBottomSheetFragment">
 
     <ImageButton
-        android:id="@+id/btnBackSignUpBottomSheetFragment"
+        android:id="@+id/btnBackSignUpBottomSheet"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:padding="15dp"
-        android:src="@drawable/left_arrow"
-        android:scaleType="fitCenter"
+        android:layout_marginTop="5dp"
+        android:background="@null"
         android:contentDescription="@string/button_back"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_left_arrow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@null"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtSignUpSignUpBottomSheetFragment"
+        android:id="@+id/txtSignUpSignUpBottomSheet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/sign_up"
-        android:textSize="22sp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/main_font_bold"
-        android:textColor="@color/main_text"
+        android:text="@string/create_account"
+        android:textColor="@color/orange"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtWelcomeSignUpBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/main_font"
+        android:gravity="center"
+        android:text="@string/welcome"
+        android:textColor="@color/main_text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSignUpSignUpBottomSheet" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editEmailSignUpBottomSheet"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edt_orange"
+        android:ems="10"
+        android:fontFamily="@font/main_font"
+        android:hint="@string/email"
+        android:inputType="text"
+        android:maxWidth="450dp"
+        android:minWidth="200dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/main_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWelcomeSignUpBottomSheet" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editPasswordSignUpBottomSheet"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edt_orange"
+        android:ems="10"
+        android:fontFamily="@font/main_font"
+        android:hint="@string/password"
+        android:inputType="text"
+        android:maxWidth="450dp"
+        android:minWidth="200dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/main_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editEmailSignUpBottomSheet" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editConfirmPasswordSignUpBottomSheet"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edt_orange"
+        android:ems="10"
+        android:fontFamily="@font/main_font"
+        android:hint="@string/confirm_password"
+        android:inputType="text"
+        android:maxWidth="450dp"
+        android:minWidth="200dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/main_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPasswordSignUpBottomSheet" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUpSignUpBottomSheet"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_orange"
+        android:fontFamily="@font/main_font_bold"
+        android:maxWidth="320dp"
+        android:minWidth="200dp"
+        android:text="@string/sign_up"
+        android:textAllCaps="false"
+        android:textColor="@color/main_text_white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editConfirmPasswordSignUpBottomSheet" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutContinueSignUpBottomSheet"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUpSignUpBottomSheet">
+
+        <TextView
+            android:id="@+id/txtContinueSignUpBottomSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/main_font_bold"
+            android:textColor="@color/orange"
+            android:text="@string/or_continue_with" />
+
+        <ImageButton
+            android:id="@+id/btnGoogleSignUpBottomSheet"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:layout_weight="1"
+            android:contentDescription="@string/continue_with_google"
+            android:src="@drawable/img_icon_google" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

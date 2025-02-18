@@ -14,4 +14,11 @@
     <string name="sign_up">Đăng ký</string>
     <string name="login">Đăng nhập</string>
     <string name="button_back">Quay lại trang trước</string>
+    <string name="email">Email</string>
+    <string name="create_account">Tạo tài khoản</string>
+    <string name="password">Mật khẩu</string>
+    <string name="confirm_password">Xác nhận mật khẩu</string>
+    <string name="welcome">Chào mừng đến với Money Lover, theo dõi chi tiêu và tiết kiệm thông minh hơn.</string>
+    <string name="or_continue_with">Hoặc tiếp tục với</string>
+    <string name="continue_with_google">Tiếp tục với Google</string>
 </resources>
