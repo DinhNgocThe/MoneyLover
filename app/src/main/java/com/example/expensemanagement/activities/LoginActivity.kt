@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.expensemanagement.R
 import com.example.expensemanagement.adapter.LoginViewPagerAdapter
 import com.example.expensemanagement.databinding.ActivityLoginBinding
+import com.example.expensemanagement.fragments.LoginBottomSheetFragment
 import com.example.expensemanagement.fragments.SignUpBottomSheetFragment
 
 @SuppressLint("StaticFieldLeak")
@@ -29,17 +30,28 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initControl() {
-        //Viewpager
+        //Set Viewpager
         val listImage = listOf(R.drawable.img_login_vp1, R.drawable.img_login_vp2, R.drawable.img_login_vp3, R.drawable.img_login_vp4)
         val adapter = LoginViewPagerAdapter(listImage)
         loginBinding.vpLoginActivity.adapter = adapter
     }
 
     private fun initEvents() {
-        //SignUp
+        //Go SignUp
         loginBinding.btnSignUpLoginActivity.setOnClickListener{
             val signUpBottomSheet = SignUpBottomSheetFragment()
             signUpBottomSheet.show(supportFragmentManager, "SignUpBottomSheetDialogFragment")
         }
+
+        //Go Login
+        loginBinding.btnLoginLoginActivity.setOnClickListener{
+            val loginBottomSheet = LoginBottomSheetFragment()
+            loginBottomSheet.show(supportFragmentManager, "LoginBottomSheetDialogFragment")
+        }
     }
+
+
+
+
+
 }

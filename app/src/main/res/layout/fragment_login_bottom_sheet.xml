@@ -1,8 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.LoginBottomSheetFragment">
 
-</FrameLayout>
+    <ImageButton
+        android:id="@+id/btnBackLoginBottomSheet"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="@string/button_back"
+        android:padding="15dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_left_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtLoginLoginBottomSheet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/main_font_bold"
+        android:text="@string/login_here"
+        android:textColor="@color/orange"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtWelcomeLoginBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/main_font"
+        android:gravity="center"
+        android:text="@string/welcome_login"
+        android:textColor="@color/main_text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLoginLoginBottomSheet" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtEmailLoginBottomSheet"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/edt_orange"
+        android:ems="10"
+        android:fontFamily="@font/main_font"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:maxWidth="450dp"
+        android:minWidth="200dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/main_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWelcomeLoginBottomSheet" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtPasswordLoginBottomSheet"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edt_orange"
+        android:ems="10"
+        android:fontFamily="@font/main_font"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:maxWidth="450dp"
+        android:minWidth="200dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/main_text"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtEmailLoginBottomSheet" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLoginLoginBottomSheet"
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_orange"
+        android:fontFamily="@font/main_font_bold"
+        android:maxWidth="320dp"
+        android:minWidth="200dp"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textColor="@color/main_text_white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordLoginBottomSheet" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutContinueLoginBottomSheet"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLoginLoginBottomSheet">
+
+        <TextView
+            android:id="@+id/txtContinueLoginBottomSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/main_font_bold"
+            android:textColor="@color/orange"
+            android:text="@string/or_continue_with" />
+
+        <ImageButton
+            android:id="@+id/btnGoogleLoginBottomSheet"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:layout_weight="1"
+            android:contentDescription="@string/continue_with_google"
+            android:src="@drawable/img_icon_google" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

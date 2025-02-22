@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtSignUpSignUpBottomSheet"
+        android:id="@+id/txtCreateAccountSignUpBottomSheet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -29,7 +29,6 @@
         android:textColor="@color/orange"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,15 +40,15 @@
         android:layout_marginEnd="50dp"
         android:fontFamily="@font/main_font"
         android:gravity="center"
-        android:text="@string/welcome"
+        android:text="@string/welcome_signup"
         android:textColor="@color/main_text"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSignUpSignUpBottomSheet" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCreateAccountSignUpBottomSheet" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editEmailSignUpBottomSheet"
+        android:id="@+id/edtEmailSignUpBottomSheet"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
@@ -57,7 +56,7 @@
         android:ems="10"
         android:fontFamily="@font/main_font"
         android:hint="@string/email"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:maxWidth="450dp"
         android:minWidth="200dp"
         android:paddingStart="15dp"
@@ -69,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtWelcomeSignUpBottomSheet" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editPasswordSignUpBottomSheet"
+        android:id="@+id/edtPasswordSignUpBottomSheet"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -77,7 +76,7 @@
         android:ems="10"
         android:fontFamily="@font/main_font"
         android:hint="@string/password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:maxWidth="450dp"
         android:minWidth="200dp"
         android:paddingStart="15dp"
@@ -86,10 +85,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editEmailSignUpBottomSheet" />
+        app:layout_constraintTop_toBottomOf="@+id/edtEmailSignUpBottomSheet" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editConfirmPasswordSignUpBottomSheet"
+        android:id="@+id/edtConfirmPasswordSignUpBottomSheet"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -97,7 +96,7 @@
         android:ems="10"
         android:fontFamily="@font/main_font"
         android:hint="@string/confirm_password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:maxWidth="450dp"
         android:minWidth="200dp"
         android:paddingStart="15dp"
@@ -106,7 +105,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPasswordSignUpBottomSheet" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordSignUpBottomSheet" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUpSignUpBottomSheet"
@@ -123,7 +122,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editConfirmPasswordSignUpBottomSheet" />
+        app:layout_constraintTop_toBottomOf="@+id/edtConfirmPasswordSignUpBottomSheet" />
 
     <LinearLayout
         android:id="@+id/linearLayoutContinueSignUpBottomSheet"

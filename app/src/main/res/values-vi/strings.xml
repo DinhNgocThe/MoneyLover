@@ -18,7 +18,9 @@
     <string name="create_account">Tạo tài khoản</string>
     <string name="password">Mật khẩu</string>
     <string name="confirm_password">Xác nhận mật khẩu</string>
-    <string name="welcome">Chào mừng đến với Money Lover, theo dõi chi tiêu và tiết kiệm thông minh hơn.</string>
+    <string name="welcome_signup">Chào mừng đến với Money Lover, theo dõi chi tiêu và tiết kiệm thông minh hơn.</string>
+    <string name="welcome_login">Chào mừng trở lại, có thể bạn đã bỏ lỡ điều gì đó</string>
     <string name="or_continue_with">Hoặc tiếp tục với</string>
     <string name="continue_with_google">Tiếp tục với Google</string>
+    <string name="login_here">Đăng nhập tại đây</string>
 </resources>

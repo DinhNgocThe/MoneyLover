@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import com.example.expensemanagement.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -15,5 +16,18 @@ class SignUpBottomSheetFragment : BottomSheetDialogFragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_up_bottom_sheet, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initEvents(view)
+    }
+
+    private fun initEvents(view: View) {
+        //Dismiss fragment
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBackSignUpBottomSheet)
+        btnBack.setOnClickListener{
+            dismiss()
+        }
     }
 }
