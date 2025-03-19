@@ -7,13 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
-    <Button
-        android:id="@+id/btnLogin"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Button login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Signed In"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="114dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

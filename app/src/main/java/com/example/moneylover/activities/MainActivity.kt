@@ -1,4 +1,4 @@
-package com.example.expensemanagement.activities
+package com.example.moneylover.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,12 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.expensemanagement.R
-import com.example.expensemanagement.databinding.ActivityMainBinding
+import com.example.moneylover.R
+import com.example.moneylover.databinding.ActivityMainBinding
 
-@SuppressLint("StaticFieldLeak")
-private lateinit var binding: ActivityMainBinding
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,10 +22,6 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
-        binding.btnLogin.setOnClickListener{
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
         }
     }
 }

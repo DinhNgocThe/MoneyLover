@@ -1,4 +1,4 @@
-package com.example.expensemanagement
+package com.example.moneylover
 
 import org.junit.Test
 

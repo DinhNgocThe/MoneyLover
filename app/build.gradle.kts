@@ -1,14 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.gms.google.services)
 }
 
 android {
-    namespace = "com.example.expensemanagement"
+    namespace = "com.example.moneylover"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.expensemanagement"
+        applicationId = "com.example.moneylover"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -49,6 +50,16 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation(libs.material)
+    implementation(libs.androidx.viewpager2)
+
+    // Import the BoM for the Firebase platform
+    implementation(platform(libs.firebase.bom))
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation(libs.firebase.auth)
+    // Also add the dependencies for the Credential Manager libraries and specify their versions
+    implementation(libs.androidx.credentials.v130)
+    implementation(libs.androidx.credentials.play.services.auth.v130)
+    implementation(libs.googleid)
 }

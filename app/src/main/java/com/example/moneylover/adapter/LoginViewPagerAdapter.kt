@@ -1,11 +1,11 @@
-package com.example.expensemanagement.adapter
+package com.example.moneylover.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.expensemanagement.R
+import com.example.moneylover.R
 
 class LoginViewPagerAdapter(private val images: List<Int>) :
     RecyclerView.Adapter<LoginViewPagerAdapter.LoginImageViewHolder>() {

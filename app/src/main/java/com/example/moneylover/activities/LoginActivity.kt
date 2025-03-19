@@ -1,20 +1,23 @@
-package com.example.expensemanagement.activities
+package com.example.moneylover.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.expensemanagement.R
-import com.example.expensemanagement.adapter.LoginViewPagerAdapter
-import com.example.expensemanagement.databinding.ActivityLoginBinding
-import com.example.expensemanagement.fragments.LoginBottomSheetFragment
-import com.example.expensemanagement.fragments.SignUpBottomSheetFragment
+import com.example.moneylover.R
+import com.example.moneylover.adapter.LoginViewPagerAdapter
+import com.example.moneylover.data.firebase.GoogleAuthClient
+import com.example.moneylover.databinding.ActivityLoginBinding
+import com.example.moneylover.fragments.LoginBottomSheetFragment
+import com.example.moneylover.fragments.SignUpBottomSheetFragment
 
-@SuppressLint("StaticFieldLeak")
-private lateinit var loginBinding: ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
+    private lateinit var loginBinding: ActivityLoginBinding
+    private lateinit var googleAuthClient: GoogleAuthClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginBinding = ActivityLoginBinding.inflate(layoutInflater)
@@ -25,8 +28,21 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        checkSignIn()
         initControl()
         initEvents()
+    }
+
+    private fun checkSignIn() {
+        googleAuthClient = GoogleAuthClient(this)
+
+        if (googleAuthClient.isSignedIn()) {
+            val intent = Intent(this, MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun initControl() {
@@ -49,9 +65,5 @@ class LoginActivity : AppCompatActivity() {
             loginBottomSheet.show(supportFragmentManager, "LoginBottomSheetDialogFragment")
         }
     }
-
-
-
-
 
 }
