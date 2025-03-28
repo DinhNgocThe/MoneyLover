@@ -27,7 +27,7 @@
         android:fontFamily="@font/logo_font"
         android:text="@string/money_lover"
         android:textColor="@color/main_color_dark"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgLogoLoginActivity"
         app:layout_constraintStart_toEndOf="@+id/imgLogoLoginActivity"
         app:layout_constraintTop_toTopOf="@+id/imgLogoLoginActivity" />
@@ -36,46 +36,46 @@
         android:id="@+id/vpLoginActivity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="70dp"
         android:foregroundGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignUpLoginActivity"
+        app:layout_constraintBottom_toTopOf="@+id/btnLoginWithGoogleLoginActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgLogoLoginActivity"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imgLogoLoginActivity" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSignUpLoginActivity"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:background="@drawable/btn_green"
-        android:fontFamily="@font/main_font_bold"
+    <LinearLayout
+        android:id="@+id/btnLoginWithGoogleLoginActivity"
+        android:layout_width="300dp"
         android:maxWidth="320dp"
         android:minWidth="200dp"
-        android:text="@string/sign_up"
-        android:textAllCaps="false"
-        android:textColor="@color/main_text_white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLoginLoginActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLoginLoginActivity"
-        android:layout_width="320dp"
-        android:maxWidth="320dp"
-        android:minWidth="200dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="25dp"
-        android:text="@string/login"
-        android:textColor="@color/main_color"
-        android:fontFamily="@font/main_font_bold"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        android:background="@drawable/btn_grey"
+        android:layout_height="65dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btn_transparent_black"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imgGoogleLoginActivity"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="25dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/login_with_google"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/img_google" />
+
+        <TextView
+            android:id="@+id/txtGoogleLoginLoginActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="1dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/main_font_bold"
+            android:text="@string/login_with_google"
+            android:textSize="18sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

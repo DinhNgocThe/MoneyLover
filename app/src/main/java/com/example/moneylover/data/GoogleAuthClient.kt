@@ -1,4 +1,4 @@
-package com.example.moneylover.data.firebase
+package com.example.moneylover.data
 
 import android.content.Context
 import android.util.Log
@@ -20,7 +20,6 @@ class GoogleAuthClient(
 ) {
     private val tag = "Firebase AuthManager: "
     private val credentialManager = CredentialManager.create(context)
-
     private val firebaseAuth = FirebaseAuth.getInstance()
 
     fun isSignedIn(): Boolean {

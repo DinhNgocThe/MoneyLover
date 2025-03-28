@@ -21,6 +21,7 @@
     <string name="welcome_signup">Chào mừng đến với Money Lover, theo dõi chi tiêu và tiết kiệm thông minh hơn.</string>
     <string name="welcome_login">Chào mừng trở lại, có thể bạn đã bỏ lỡ điều gì đó</string>
     <string name="or_continue_with">Hoặc tiếp tục với</string>
-    <string name="continue_with_google">Tiếp tục với Google</string>
+    <string name="login_with_google">Đăng nhập với Google</string>
     <string name="login_here">Đăng nhập tại đây</string>
+    <string name="login_with_facebook">Đăng nhập với Facebook</string>
 </resources>
