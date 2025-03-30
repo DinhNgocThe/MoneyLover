@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.moneylover.R
 import com.example.moneylover.adapter.LoginViewPagerAdapter
-import com.example.moneylover.data.GoogleAuthClient
+import com.example.moneylover.data.firebasemodel.GoogleAuthClient
 import com.example.moneylover.databinding.ActivityLoginBinding
 import kotlinx.coroutines.launch
 
