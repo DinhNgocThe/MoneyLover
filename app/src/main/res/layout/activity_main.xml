@@ -5,13 +5,56 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavMainActivity"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Signed In"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="114dp" />
+        android:layout_marginBottom="-20dp"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        app:itemIconTint="@color/bottom_nav_item_color"
+        app:itemRippleColor="@null"
+        app:itemTextColor="@color/bottom_nav_item_color"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavMainActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="4dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottomNavMainActivity">
+
+        <ImageView
+            android:id="@+id/centerIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:contentDescription="@string/add_transaction"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_add_transaction"/>
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

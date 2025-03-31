@@ -24,4 +24,9 @@
     <string name="login_with_google">Đăng nhập với Google</string>
     <string name="login_here">Đăng nhập tại đây</string>
     <string name="login_with_facebook">Đăng nhập với Facebook</string>
+    <string name="home">Trang chủ</string>
+    <string name="transactions">Giao dịch</string>
+    <string name="budget">Ngân sách</string>
+    <string name="profile">Hồ sơ</string>
+    <string name="add_transaction">Thêm giao dịch</string>
 </resources>

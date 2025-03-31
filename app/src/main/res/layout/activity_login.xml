@@ -17,7 +17,7 @@
         android:contentDescription="@string/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_logo" />
+        app:srcCompat="@drawable/ic_logo" />
 
     <TextView
         android:id="@+id/txtMoneyLoverLoginActivity"
@@ -45,7 +45,7 @@
 
     <LinearLayout
         android:id="@+id/btnLoginWithGoogleLoginActivity"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:maxWidth="320dp"
         android:minWidth="200dp"
         android:layout_height="65dp"
@@ -60,11 +60,11 @@
             android:id="@+id/imgGoogleLoginActivity"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="50dp"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/login_with_google"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/img_google" />
+            app:srcCompat="@drawable/ic_google" />
 
         <TextView
             android:id="@+id/txtGoogleLoginLoginActivity"

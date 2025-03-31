@@ -18,7 +18,7 @@ class UserRepository(
             return userDao.getUserByUid(uid)
         } catch (e: Exception) {
             Log.e(tag, "Error getting user by uid from room: ${e.message}", e)
-            throw e
+            return null
         }
     }
 
@@ -27,7 +27,7 @@ class UserRepository(
             return fireStore.collection("users").document(uid).get().await().toObject(UserFirebase::class.java)
         } catch (e: Exception) {
             Log.e(tag, "Error getting user by uid from firestore: ${e.message}", e)
-            throw e
+            return null
         }
     }
 
@@ -36,7 +36,6 @@ class UserRepository(
             userDao.insertUser(user)
         } catch (e: Exception) {
             Log.e(tag, "Error saving user to room: ${e.message}", e)
-            throw e
         }
     }
 
@@ -45,7 +44,6 @@ class UserRepository(
             fireStore.collection("users").document(user.uid).set(user).await()
         } catch (e: Exception) {
             Log.e(tag, "Error saving user to firestore: ${e.message}", e)
-            throw e
         }
     }
 }
