@@ -1,12 +1,11 @@
-package com.example.moneylover.activities
+package com.example.moneylover.ui
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.moneylover.R
 import com.example.moneylover.databinding.ActivityMainBinding
 
@@ -23,5 +22,21 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        initControls()
+    }
+
+    private fun initControls() {
+        binding.bottomNavMainActivity.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navProfile -> replaceFragment(ProfileFragment())
+            }
+            true
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
 }

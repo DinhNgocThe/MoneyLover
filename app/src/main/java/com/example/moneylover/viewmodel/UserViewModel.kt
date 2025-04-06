@@ -1,5 +1,6 @@
 package com.example.moneylover.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -8,7 +9,8 @@ import com.example.moneylover.data.repository.UserRepository
 import com.example.moneylover.data.room.model.User
 import kotlinx.coroutines.launch
 
-class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
+class UserViewModel(context: Application) : ViewModel() {
+    private val userRepository = UserRepository(context)
 
     suspend fun getUserByUidFromRoom(uid: String) : User? {
         return userRepository.getUserByUidFromRoom(uid)
@@ -30,11 +32,11 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
-    class UserViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.Factory {
+    class UserViewModelFactory(private val context: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return UserViewModel(userRepository) as T
+                return UserViewModel(context) as T
             }
             throw IllegalArgumentException("Unable construct UserViewModelFactory")
         }

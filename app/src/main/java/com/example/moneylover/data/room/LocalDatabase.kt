@@ -1,10 +1,13 @@
 package com.example.moneylover.data.room
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.moneylover.data.room.dao.UserDao
+import com.example.moneylover.data.room.model.User
 
+@Database(entities = [User::class], version = 1)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
 

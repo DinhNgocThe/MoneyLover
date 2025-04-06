@@ -11,6 +11,7 @@
     <color name="main_text">#000000</color>
     <color name="main_text_white">#FFFFFF</color>
     <color name="button_green">#31B849</color>
-    <color name="bottom_nav_item_selected_color">#31B849</color>
+    <color name="bottom_nav_item_selected_color">#077B1A</color>
     <color name="bottom_nav_item_unselected_color">#000000</color>
+    <color name="background">#FAFAFA</color>
 </resources>

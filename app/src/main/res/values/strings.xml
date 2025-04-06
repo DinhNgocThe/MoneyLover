@@ -28,4 +28,6 @@
     <string name="budget">Budget</string>
     <string name="profile">Profile</string>
     <string name="add_transaction">Add Transaction</string>
+    <string name="photo_user">Photo User</string>
+    <string name="display_name">Display Name</string>
 </resources>

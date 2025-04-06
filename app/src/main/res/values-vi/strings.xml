@@ -29,4 +29,6 @@
     <string name="budget">Ngân sách</string>
     <string name="profile">Hồ sơ</string>
     <string name="add_transaction">Thêm giao dịch</string>
+    <string name="photo_user">Ảnh người dùng</string>
+    <string name="display_name">Tên người dùng</string>
 </resources>

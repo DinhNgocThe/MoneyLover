@@ -1,4 +1,4 @@
-package com.example.moneylover.activities
+package com.example.moneylover.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,16 +6,30 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.moneylover.R
 import com.example.moneylover.adapter.LoginViewPagerAdapter
 import com.example.moneylover.data.firebasemodel.GoogleAuthClient
+import com.example.moneylover.data.firebasemodel.UserFirebase
+import com.example.moneylover.data.room.model.User
 import com.example.moneylover.databinding.ActivityLoginBinding
+import com.example.moneylover.viewmodel.UserViewModel
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleAuthClient: GoogleAuthClient
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val userViewModel: UserViewModel by lazy {
+        ViewModelProvider(
+            this,
+            UserViewModel.UserViewModelFactory(this.application)
+        )[UserViewModel::class.java]
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +71,27 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val isSuccess = googleAuthClient.signIn()
                 if (isSuccess) {
+                    val currentUser = firebaseAuth.currentUser
+                    val userFirebase = UserFirebase(
+                        uid = currentUser?.uid ?: "",
+                        email = currentUser?.email,
+                        displayName = currentUser?.displayName,
+                        photoUrl = currentUser?.photoUrl?.toString(),
+                        createdAt = currentUser?.metadata?.creationTimestamp?.let {
+                            Timestamp(it / 1000, ((it % 1000) * 1000000).toInt())
+                        }
+                    )
+                    val user = User(
+                        uid = currentUser?.uid ?: "",
+                        email = currentUser?.email,
+                        displayName = currentUser?.displayName,
+                        photoUrl = currentUser?.photoUrl?.toString(),
+                        createdAt = currentUser?.metadata?.creationTimestamp?.let {
+                            it / 1000
+                        }
+                    )
+                    userViewModel.saveUserToFirestore(userFirebase)
+                    userViewModel.saveUserToRoom(user)
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()

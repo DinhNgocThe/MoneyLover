@@ -1,17 +1,22 @@
 package com.example.moneylover.data.repository
 
+import android.app.Application
 import android.util.Log
 import com.example.moneylover.data.firebasemodel.UserFirebase
+import com.example.moneylover.data.room.LocalDatabase
 import com.example.moneylover.data.room.dao.UserDao
 import com.example.moneylover.data.room.model.User
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class UserRepository(
-    private val userDao: UserDao,
-    private val fireStore: FirebaseFirestore
-) {
+class UserRepository(context: Application) {
     private val tag = "UserRepository"
+    private val userDao: UserDao
+    private val fireStore = FirebaseFirestore.getInstance()
+    init {
+        val localDatabase: LocalDatabase = LocalDatabase.getInstance(context)
+        userDao = localDatabase.userDao()
+    }
 
     suspend fun getUserByUidFromRoom(uid: String) : User? {
         try {

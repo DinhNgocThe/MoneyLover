@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".activities.MainActivity">
+    android:background="@color/background"
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavMainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-20dp"
+        android:layout_marginBottom="-30dp"
         android:background="@color/white"
         android:fitsSystemWindows="true"
         app:itemIconTint="@color/bottom_nav_item_color"
@@ -34,27 +34,37 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/cardView"
+        android:layout_marginTop="3dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="4dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bottomNavMainActivity">
+        app:layout_constraintTop_toTopOf="@+id/bottomNavMainActivity">
 
         <ImageView
-            android:id="@+id/centerIcon"
+            android:id="@+id/navBtnAddTransactionMainActivity"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:background="@null"
             android:contentDescription="@string/add_transaction"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_add_transaction"/>
+            android:src="@drawable/ic_add_transaction" />
     </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
