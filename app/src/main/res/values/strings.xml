@@ -30,4 +30,13 @@
     <string name="add_transaction">Add Transaction</string>
     <string name="photo_user">Photo User</string>
     <string name="display_name">Display Name</string>
+    <string name="log_out">Log out</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hi_welcome">Hi, welcome!</string>
+    <string name="my_balance">My Balance</string>
+    <string name="hidden_balance">Hidden balance</string>
+    <string name="edit_balance">Edit balance</string>
+    <string name="default_balance">5.200.000 VND</string>
+    <string name="balance_when_hidden">••• ••• •••</string>
+    <string name="vnd">VND</string>
 </resources>

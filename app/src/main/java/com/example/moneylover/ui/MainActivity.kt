@@ -22,12 +22,15 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        initControls()
+        eventNavBar()
     }
 
-    private fun initControls() {
+    private fun eventNavBar() {
+        replaceFragment(HomeFragment())
         binding.bottomNavMainActivity.setOnItemSelectedListener { item ->
             when (item.itemId) {
+                R.id.navHome -> replaceFragment(HomeFragment())
+
                 R.id.navProfile -> replaceFragment(ProfileFragment())
             }
             true

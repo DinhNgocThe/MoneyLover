@@ -2,6 +2,7 @@ package com.example.moneylover.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,9 +13,12 @@ import com.example.moneylover.R
 import com.example.moneylover.adapter.LoginViewPagerAdapter
 import com.example.moneylover.data.firebasemodel.GoogleAuthClient
 import com.example.moneylover.data.firebasemodel.UserFirebase
+import com.example.moneylover.data.firebasemodel.WalletFirebase
 import com.example.moneylover.data.room.model.User
+import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.ActivityLoginBinding
 import com.example.moneylover.viewmodel.UserViewModel
+import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
@@ -28,6 +32,12 @@ class LoginActivity : AppCompatActivity() {
             this,
             UserViewModel.UserViewModelFactory(this.application)
         )[UserViewModel::class.java]
+    }
+    private val walletViewModel: WalletViewModel by lazy {
+        ViewModelProvider(
+            this,
+            WalletViewModel.WalletViewModelFactory(this.application)
+        )[WalletViewModel::class.java]
     }
 
 
@@ -71,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val isSuccess = googleAuthClient.signIn()
                 if (isSuccess) {
+                    //Save user to room and firestore
                     val currentUser = firebaseAuth.currentUser
                     val userFirebase = UserFirebase(
                         uid = currentUser?.uid ?: "",
@@ -92,6 +103,26 @@ class LoginActivity : AppCompatActivity() {
                     )
                     userViewModel.saveUserToFirestore(userFirebase)
                     userViewModel.saveUserToRoom(user)
+
+                    //Save wallet to room and firestore
+                    var walletFirebase = walletViewModel.getWalletFromFirestoreByUid(currentUser?.uid ?: "")
+                    if (walletFirebase == null) {
+                        val newWallet = WalletFirebase(
+                            uid = currentUser?.uid ?: "",
+                            balance = 0.0,
+                            limitAmount = 0.0
+                        )
+                        walletViewModel.insertWalletToFirestore(newWallet)
+                        walletFirebase = walletViewModel.getWalletFromFirestoreByUid(currentUser?.uid ?: "")
+                    }
+                    val wallet = Wallet(
+                        walletFirebase?.id ?: "",
+                        walletFirebase?.uid ?: "",
+                        walletFirebase?.balance ?: 0.0,
+                        walletFirebase?.limitAmount ?: 0.0
+                    )
+                    walletViewModel.insertWalletToRoom(wallet)
+
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()

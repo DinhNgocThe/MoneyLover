@@ -4,4 +4,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="MyAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:fontFamily">@font/main_font</item>
+    </style>
 </resources>
+

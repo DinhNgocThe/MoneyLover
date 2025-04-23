@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.HomeFragment"
+    android:background="@color/background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgPhotoHomeFragment"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:contentDescription="@string/photo_user"
+            android:elevation="4dp"
+            android:src="@drawable/img_default_user_photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+        <TextView
+            android:id="@+id/txtWelcomeHomeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/hi_welcome"
+            android:textColor="@color/brown"
+            android:textSize="15sp"
+            android:fontFamily="@font/main_font"
+            app:layout_constraintStart_toEndOf="@+id/imgPhotoHomeFragment"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDisplayNameHomeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/main_font_bold"
+            android:textColor="@color/black"
+            android:text="@string/display_name"
+            app:layout_constraintStart_toEndOf="@+id/imgPhotoHomeFragment"
+            app:layout_constraintTop_toBottomOf="@+id/txtWelcomeHomeFragment" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="1dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgPhotoHomeFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="17dp">
+
+                <TextView
+                    android:id="@+id/txtMyBalanceHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="17dp"
+                    android:fontFamily="@font/main_font"
+                    android:text="@string/my_balance"
+                    android:textColor="@color/brown"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtBalanceHomeFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/main_font_bold"
+                    android:text="@string/balance_when_hidden"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtMyBalanceHomeFragment" />
+
+                <ImageButton
+                    android:id="@+id/btnEditBalanceHomeFragment"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@null"
+                    android:contentDescription="@string/edit_balance"
+                    android:padding="13dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btnHiddenBalanceHomeFragment"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="0dp"
+                    android:background="@null"
+                    android:padding="12dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_hidden"
+                    android:contentDescription="@string/hidden_balance"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtBalanceHomeFragment"
+                    app:layout_constraintStart_toEndOf="@+id/txtBalanceHomeFragment"
+                    app:layout_constraintTop_toTopOf="@+id/txtBalanceHomeFragment" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -38,7 +38,7 @@ class UserViewModel(context: Application) : ViewModel() {
                 @Suppress("UNCHECKED_CAST")
                 return UserViewModel(context) as T
             }
-            throw IllegalArgumentException("Unable construct UserViewModelFactory")
+            throw IllegalArgumentException("Unable to construct UserViewModelFactory")
         }
     }
 }

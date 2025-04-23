@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/white"
     tools:context=".ui.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-30dp"
+        app:itemIconSize="25dp"
         android:background="@color/white"
         android:fitsSystemWindows="true"
         app:itemIconTint="@color/bottom_nav_item_color"
@@ -35,7 +36,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_width="48dp"
         android:layout_height="48dp"
         app:cardCornerRadius="30dp"

@@ -31,4 +31,12 @@
     <string name="add_transaction">Thêm giao dịch</string>
     <string name="photo_user">Ảnh người dùng</string>
     <string name="display_name">Tên người dùng</string>
+    <string name="log_out">Đăng xuất</string>
+    <string name="hi_welcome">Xin chào, chào mừng!</string>
+    <string name="my_balance">Tổng số dư</string>
+    <string name="hidden_balance">Ẩn số dư</string>
+    <string name="edit_balance">Chỉnh sửa số dư</string>
+    <string name="default_balance">5.200.000 VND</string>
+    <string name="balance_when_hidden">••• ••• •••</string>
+    <string name="vnd">VND</string>
 </resources>

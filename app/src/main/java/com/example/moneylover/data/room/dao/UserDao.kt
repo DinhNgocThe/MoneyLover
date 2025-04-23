@@ -13,17 +13,7 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
 
-    @Update
-    suspend fun updateUser(user: User)
-
-    @Delete
-    suspend fun deleteUser(user: User)
-
-    // Lấy user theo UID
-    @Query("SELECT * FROM user_tbl WHERE uid = :uid")
+    // Get user by UID
+    @Query("SELECT * FROM tbl_user WHERE uid = :uid")
     suspend fun getUserByUid(uid: String): User?
-
-    // Xóa user theo UID
-    @Query("DELETE FROM user_tbl WHERE uid = :uid")
-    suspend fun deleteUser(uid: String)
 }

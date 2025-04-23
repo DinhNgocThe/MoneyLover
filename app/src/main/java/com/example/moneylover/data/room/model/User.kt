@@ -3,7 +3,7 @@ package com.example.moneylover.data.room.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "user_tbl")
+@Entity(tableName = "tbl_user")
 data class User(
     @PrimaryKey val uid: String = "",
     val email: String? = null,

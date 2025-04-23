@@ -5,11 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.moneylover.data.room.dao.UserDao
+import com.example.moneylover.data.room.dao.WalletDao
 import com.example.moneylover.data.room.model.User
+import com.example.moneylover.data.room.model.Wallet
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [User::class, Wallet::class], version = 1)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
+    abstract fun walletDao() : WalletDao
 
     companion object {
         @Volatile
@@ -17,7 +20,7 @@ abstract class LocalDatabase : RoomDatabase() {
 
         fun getInstance(context: Context) : LocalDatabase {
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext, LocalDatabase::class.java, "money_lover_database").build()
+                val instance = Room.databaseBuilder(context.applicationContext, LocalDatabase::class.java, "money_lover_database").fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }
