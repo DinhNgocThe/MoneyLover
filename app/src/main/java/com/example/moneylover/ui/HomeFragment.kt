@@ -1,22 +1,23 @@
 package com.example.moneylover.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Application
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.view.WindowInsetsController
-import android.view.WindowManager
-import androidx.annotation.RequiresApi
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.moneylover.R
 import com.example.moneylover.data.room.model.User
 import com.example.moneylover.data.room.model.Wallet
@@ -33,6 +34,7 @@ class HomeFragment : Fragment() {
     private lateinit var user: User
     private lateinit var binding: FragmentHomeBinding
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var editBalanceLauncher: ActivityResultLauncher<Intent>
     private val userViewModel: UserViewModel by lazy {
         ViewModelProvider(
             this,
@@ -56,10 +58,27 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        startLauncher()
         changeStatusBarColor()
         loadUserInformation()
         loadWalletInformation()
         hiddenBalance()
+        editBalance()
+    }
+
+    private fun startLauncher() {
+        editBalanceLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                loadWalletInformation()
+            }
+        }
+    }
+
+    private fun editBalance() {
+        binding.btnEditBalanceHomeFragment.setOnClickListener {
+            val intent = Intent(this.requireContext(), EditBalanceActivity::class.java)
+            editBalanceLauncher.launch(intent)
+        }
     }
 
     private fun changeStatusBarColor() {
@@ -92,17 +111,20 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             wallet = walletViewModel.getWalletFromRoomByUid(firebaseAuth.currentUser?.uid.toString())!!
             binding.txtBalanceHomeFragment.text = getString(R.string.balance_when_hidden)
+            binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_hidden)
         }
     }
 
     private fun loadUserInformation() {
         lifecycleScope.launch {
             user = userViewModel.getUserByUidFromRoom(firebaseAuth.currentUser?.uid.toString())!!
-            binding.txtDisplayNameHomeFragment.text = user?.displayName
+            binding.txtDisplayNameHomeFragment.text = user.displayName
             Glide.with(requireContext())
                 .load(user.photoUrl)
                 .placeholder(R.drawable.img_default_user_photo)
                 .error(R.drawable.img_default_user_photo)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(binding.imgPhotoHomeFragment)
         }
     }

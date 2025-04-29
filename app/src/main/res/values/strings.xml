@@ -36,7 +36,15 @@
     <string name="my_balance">My Balance</string>
     <string name="hidden_balance">Hidden balance</string>
     <string name="edit_balance">Edit balance</string>
-    <string name="default_balance">5.200.000 VND</string>
+    <string name="default_balance">5,200,000</string>
     <string name="balance_when_hidden">••• ••• •••</string>
     <string name="vnd">VND</string>
+    <string name="confirm_logout">Are you sure you want to log out?</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_wallet">Edit wallet</string>
+    <string name="save">Save</string>
+    <string name="limit_amount">Limit Amount</string>
+    <string name="zero">0</string>
+    <string name="warning">Warning</string>
+    <string name="limit_amount_warning">Limit Amount allows you to receive alerts if you overspend.</string>
 </resources>

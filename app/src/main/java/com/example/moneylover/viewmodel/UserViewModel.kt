@@ -32,6 +32,12 @@ class UserViewModel(context: Application) : ViewModel() {
         }
     }
 
+    fun clearAllTables() {
+        viewModelScope.launch {
+            userRepository.clearAllTables()
+        }
+    }
+
     class UserViewModelFactory(private val context: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(UserViewModel::class.java)) {

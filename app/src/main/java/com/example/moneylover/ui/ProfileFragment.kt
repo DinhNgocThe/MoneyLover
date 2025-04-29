@@ -1,6 +1,5 @@
 package com.example.moneylover.ui
 
-import android.app.AlertDialog
 import com.example.moneylover.R
 import android.app.Application
 import android.content.Intent
@@ -9,10 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.moneylover.data.firebasemodel.GoogleAuthClient
 import com.example.moneylover.databinding.FragmentProfileBinding
 import com.example.moneylover.viewmodel.UserViewModel
@@ -54,12 +53,12 @@ class ProfileFragment : Fragment() {
 
     private fun showLogoutConfirmationDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Đăng xuất")
-            .setMessage("Bạn có chắc chắn muốn đăng xuất khỏi tài khoản?")
-            .setPositiveButton("Đăng xuất") { _, _ ->
+            .setTitle(R.string.log_out)
+            .setMessage(R.string.confirm_logout)
+            .setPositiveButton(R.string.log_out) { _, _ ->
                 performLogout()
             }
-            .setNegativeButton("Hủy", null)
+            .setNegativeButton(R.string.cancel, null)
             .show()
     }
 
@@ -67,6 +66,7 @@ class ProfileFragment : Fragment() {
     private fun performLogout() {
         lifecycleScope.launch {
             googleAuthClient.signOut()
+            userViewModel.clearAllTables()
             val intent = Intent(requireContext(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -83,6 +83,8 @@ class ProfileFragment : Fragment() {
                 .load(user?.photoUrl)
                 .placeholder(R.drawable.img_default_user_photo)
                 .error(R.drawable.img_default_user_photo)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
                 .into(binding.imgPhotoProfileFragment)
         }
     }

@@ -7,16 +7,15 @@ import com.example.moneylover.data.room.LocalDatabase
 import com.example.moneylover.data.room.dao.UserDao
 import com.example.moneylover.data.room.model.User
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class UserRepository(context: Application) {
     private val tag = "UserRepository"
-    private val userDao: UserDao
     private val fireStore = FirebaseFirestore.getInstance()
-    init {
-        val localDatabase: LocalDatabase = LocalDatabase.getInstance(context)
-        userDao = localDatabase.userDao()
-    }
+    private val localDatabase: LocalDatabase = LocalDatabase.getInstance(context)
+    private val userDao: UserDao = localDatabase.userDao()
 
     suspend fun getUserByUidFromRoom(uid: String) : User? {
         try {
@@ -49,6 +48,12 @@ class UserRepository(context: Application) {
             fireStore.collection("users").document(user.uid).set(user).await()
         } catch (e: Exception) {
             Log.e(tag, "Error saving user to firestore: ${e.message}", e)
+        }
+    }
+
+    suspend fun clearAllTables() {
+        withContext(Dispatchers.IO) {
+            localDatabase.clearAllTables()
         }
     }
 }

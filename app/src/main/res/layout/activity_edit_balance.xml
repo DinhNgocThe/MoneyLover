@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.EditBalanceActivity">
+
+    <TextView
+        android:id="@+id/txtEditWalletEditBalanceActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/main_font_bold"
+        android:text="@string/edit_wallet"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnBackEditBalanceActivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="14dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/button_back"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_left_arrow"
+        app:tint="@color/btn_image_ic" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditWalletEditBalanceActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:paddingTop="20dp"
+            android:paddingBottom="35dp">
+
+            <TextView
+                android:id="@+id/txtMyBalanceEditBalanceActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/main_font"
+                android:text="@string/my_balance"
+                android:textColor="@color/brown"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtBalanceEditBalanceActivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="25dp"
+                android:autofillHints="balance"
+                android:background="@drawable/edt_grey"
+                android:ems="10"
+                android:fontFamily="@font/main_font"
+                android:gravity="center_vertical|end"
+                android:hint="@string/zero"
+                android:inputType="numberDecimal"
+                android:paddingStart="15dp"
+                android:paddingEnd="50dp"
+                android:text="@string/default_balance"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtMyBalanceEditBalanceActivity" />
+
+            <TextView
+                android:id="@+id/txtVNDEditBalanceActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/main_font"
+                android:text="@string/vnd"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edtBalanceEditBalanceActivity"
+                app:layout_constraintEnd_toEndOf="@+id/edtBalanceEditBalanceActivity"
+                app:layout_constraintTop_toTopOf="@+id/edtBalanceEditBalanceActivity" />
+
+            <TextView
+                android:id="@+id/txtLimitAmountEditBalanceActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/main_font"
+                android:text="@string/limit_amount"
+                android:textColor="@color/brown"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtBalanceEditBalanceActivity" />
+
+            <EditText
+                android:id="@+id/edtLimitAmountEditBalanceActivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="25dp"
+                android:autofillHints="balance"
+                android:background="@drawable/edt_grey"
+                android:ems="10"
+                android:fontFamily="@font/main_font"
+                android:gravity="center_vertical|end"
+                android:hint="@string/zero"
+                android:inputType="numberDecimal"
+                android:paddingStart="15dp"
+                android:paddingEnd="50dp"
+                android:text="@string/zero"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLimitAmountEditBalanceActivity" />
+
+            <TextView
+                android:id="@+id/txtVND1EditBalanceActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/main_font"
+                android:text="@string/vnd"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/edtLimitAmountEditBalanceActivity"
+                app:layout_constraintEnd_toEndOf="@+id/edtLimitAmountEditBalanceActivity"
+                app:layout_constraintTop_toTopOf="@+id/edtLimitAmountEditBalanceActivity" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imgWarningEditBalanceActivity"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/warning"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:srcCompat="@drawable/ic_warning" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSaveEditBalanceActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/btn_white"
+        android:fontFamily="@font/main_font"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/main_color"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgWarningEditBalanceActivity" />
+
+    <TextView
+        android:id="@+id/txtWarningEditBalanceActivity"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/main_font"
+        android:text="@string/limit_amount_warning"
+        android:textColor="@color/brown"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/imgWarningEditBalanceActivity"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,9 @@ interface WalletDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWallet(wallet: Wallet)
 
+    @Update
+    suspend fun updateWallet(wallet: Wallet)
+
     // Get wallet by uid
     @Query("SELECT * FROM tbl_wallet WHERE uid = :userId LIMIT 1")
     suspend fun getWalletsByUid(userId: String): Wallet?

@@ -20,7 +20,7 @@ abstract class LocalDatabase : RoomDatabase() {
 
         fun getInstance(context: Context) : LocalDatabase {
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext, LocalDatabase::class.java, "money_lover_database").fallbackToDestructiveMigration().build()
+                val instance = Room.databaseBuilder(context.applicationContext, LocalDatabase::class.java, "money_lover_database.db").fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }

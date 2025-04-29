@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="grey">#E6E6E6</color>
+    <color name="grey">#ECECEC</color>
     <color name="brown">#747474</color>
     <color name="light_green">#E5F3EA</color>
     <color name="light_orange">#F9DBD3</color>
@@ -12,7 +12,7 @@
     <color name="main_text">#000000</color>
     <color name="main_text_white">#FFFFFF</color>
     <color name="button_green">#31B849</color>
-    <color name="bottom_nav_item_selected_color">#04B151</color>
+    <color name="bottom_nav_item_selected_color">#0EBE6A</color>
     <color name="bottom_nav_item_unselected_color">#747474</color>
     <color name="background">#F5F5F5</color>
     <color name="red">#E20000</color>

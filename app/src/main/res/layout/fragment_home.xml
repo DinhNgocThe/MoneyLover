@@ -89,18 +89,19 @@
                     android:fontFamily="@font/main_font_bold"
                     android:text="@string/balance_when_hidden"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtMyBalanceHomeFragment" />
 
                 <ImageButton
                     android:id="@+id/btnEditBalanceHomeFragment"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@null"
                     android:contentDescription="@string/edit_balance"
                     android:padding="13dp"
                     android:scaleType="fitCenter"
+                    app:tint="@color/btn_image_ic"
                     android:src="@drawable/ic_edit"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -109,7 +110,7 @@
                     android:id="@+id/btnHiddenBalanceHomeFragment"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="3dp"
                     android:background="@null"
                     android:padding="12dp"
                     android:scaleType="fitCenter"

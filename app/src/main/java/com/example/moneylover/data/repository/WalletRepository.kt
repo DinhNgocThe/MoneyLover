@@ -64,4 +64,12 @@ class WalletRepository(context: Application) {
             Log.e(tag, "Error updating wallet in Firestore: ${e.message}", e)
         }
     }
+
+    suspend fun updateWalletToRoom(wallet: Wallet) {
+        try {
+            walletDao.updateWallet(wallet)
+        } catch (e: Exception) {
+            Log.e(tag, "Error updating wallet to room: ${e.message}", e)
+        }
+    }
 }

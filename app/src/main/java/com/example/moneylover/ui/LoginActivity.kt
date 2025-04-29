@@ -2,7 +2,6 @@ package com.example.moneylover.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -58,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun checkSignIn() {
         googleAuthClient = GoogleAuthClient(this)
-
+        //If user is already signed in, go to MainActivity
         if (googleAuthClient.isSignedIn()) {
             val intent = Intent(this, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -110,7 +109,8 @@ class LoginActivity : AppCompatActivity() {
                         val newWallet = WalletFirebase(
                             uid = currentUser?.uid ?: "",
                             balance = 0.0,
-                            limitAmount = 0.0
+                            limitAmount = 0.0,
+                            totalExpense = 0.0
                         )
                         walletViewModel.insertWalletToFirestore(newWallet)
                         walletFirebase = walletViewModel.getWalletFromFirestoreByUid(currentUser?.uid ?: "")
@@ -119,10 +119,12 @@ class LoginActivity : AppCompatActivity() {
                         walletFirebase?.id ?: "",
                         walletFirebase?.uid ?: "",
                         walletFirebase?.balance ?: 0.0,
-                        walletFirebase?.limitAmount ?: 0.0
+                        walletFirebase?.limitAmount ?: 0.0,
+                        walletFirebase?.totalExpense ?: 0.0
                     )
                     walletViewModel.insertWalletToRoom(wallet)
 
+                    //Go to MainActivity
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()

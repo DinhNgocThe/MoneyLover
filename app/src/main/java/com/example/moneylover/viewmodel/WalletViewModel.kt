@@ -32,6 +32,18 @@ class WalletViewModel(context: Application) : ViewModel() {
         return walletRepository.getWalletByUidFromFirestore(uid)
     }
 
+    fun updateWalletToFirestore(walletFirebase: WalletFirebase) {
+        viewModelScope.launch {
+            walletRepository.updateWalletToFirestore(walletFirebase)
+        }
+    }
+
+    fun updateWalletToRoom(wallet: Wallet) {
+        viewModelScope.launch {
+            walletRepository.updateWalletToRoom(wallet)
+        }
+    }
+
     class WalletViewModelFactory(private val context: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(WalletViewModel::class.java)) {

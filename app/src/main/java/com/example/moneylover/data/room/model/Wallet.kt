@@ -8,5 +8,6 @@ data class Wallet(
     @PrimaryKey val id: String,
     val uid: String = "",
     val balance: Double = 0.0,
-    val limitAmount: Double = 0.0
+    val limitAmount: Double = 0.0,
+    val totalExpense: Double = 0.0
 )
