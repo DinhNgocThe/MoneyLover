@@ -45,9 +45,7 @@
 
     <LinearLayout
         android:id="@+id/btnLoginWithGoogleLoginActivity"
-        android:layout_width="320dp"
-        android:maxWidth="320dp"
-        android:minWidth="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="65dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/btn_transparent_black"
@@ -73,6 +71,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="1dp"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="50dp"
             android:fontFamily="@font/main_font_bold"
             android:text="@string/login_with_google"
             android:textSize="18sp" />

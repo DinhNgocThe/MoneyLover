@@ -7,6 +7,8 @@ import com.example.moneylover.data.room.LocalDatabase
 import com.example.moneylover.data.room.dao.WalletDao
 import com.example.moneylover.data.room.model.Wallet
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.tasks.await
 
 class WalletRepository(context: Application) {
@@ -37,7 +39,16 @@ class WalletRepository(context: Application) {
         }
     }
 
-    suspend fun getWalletByUidFromRoom(uid: String) : Wallet? {
+    fun loadWalletFromRoomByUid(uid: String) : Flow<Wallet?> {
+        try {
+            return walletDao.loadWalletsByUid(uid)
+        } catch (e: Exception) {
+            Log.e(tag, "Error getting wallet by uid from room: ${e.message}", e)
+            return emptyFlow()
+        }
+    }
+
+    suspend fun getWalletFromRoomByUid(uid: String) : Wallet? {
         try {
             return walletDao.getWalletsByUid(uid)
         } catch (e: Exception) {
@@ -46,7 +57,7 @@ class WalletRepository(context: Application) {
         }
     }
 
-    suspend fun getWalletByUidFromFirestore(uid: String): WalletFirebase? {
+    suspend fun getWalletFromFirestoreByUid(uid: String): WalletFirebase? {
         try {
             return fireStore.collection("wallets").whereEqualTo("uid", uid).get().await().documents[0].toObject(WalletFirebase::class.java)
         } catch (e: Exception) {

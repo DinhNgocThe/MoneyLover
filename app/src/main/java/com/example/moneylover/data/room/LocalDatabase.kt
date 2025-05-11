@@ -4,15 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.moneylover.data.room.dao.TransactionDao
 import com.example.moneylover.data.room.dao.UserDao
 import com.example.moneylover.data.room.dao.WalletDao
+import com.example.moneylover.data.room.model.Transaction
 import com.example.moneylover.data.room.model.User
 import com.example.moneylover.data.room.model.Wallet
 
-@Database(entities = [User::class, Wallet::class], version = 1)
+@Database(entities = [User::class, Wallet::class, Transaction::class], version = 1)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
     abstract fun walletDao() : WalletDao
+    abstract fun transactionDao() : TransactionDao
 
     companion object {
         @Volatile

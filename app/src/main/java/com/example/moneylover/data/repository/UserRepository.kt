@@ -17,7 +17,7 @@ class UserRepository(context: Application) {
     private val localDatabase: LocalDatabase = LocalDatabase.getInstance(context)
     private val userDao: UserDao = localDatabase.userDao()
 
-    suspend fun getUserByUidFromRoom(uid: String) : User? {
+    suspend fun getUserFromRoomByUid(uid: String) : User? {
         try {
             return userDao.getUserByUid(uid)
         } catch (e: Exception) {
@@ -26,7 +26,7 @@ class UserRepository(context: Application) {
         }
     }
 
-    suspend fun getUserByUidFromFirestore(uid: String) : UserFirebase? {
+    suspend fun getUserFromFirestoreByUid(uid: String) : UserFirebase? {
         try {
             return fireStore.collection("users").document(uid).get().await().toObject(UserFirebase::class.java)
         } catch (e: Exception) {

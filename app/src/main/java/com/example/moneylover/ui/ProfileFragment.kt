@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.example.moneylover.data.firebasemodel.GoogleAuthClient
 import com.example.moneylover.databinding.FragmentProfileBinding
 import com.example.moneylover.viewmodel.UserViewModel
@@ -40,14 +40,14 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadUserInformation()
-        logOut()
+        logOut() //Event log out
+        loadUserInformation() //Load user information
     }
 
     private fun logOut() {
         googleAuthClient = GoogleAuthClient(requireContext())
         binding.btnLogOutProfileFragment.setOnClickListener {
-            showLogoutConfirmationDialog()
+            showLogoutConfirmationDialog() // Show dialog to confirm logout
         }
     }
 
@@ -55,36 +55,34 @@ class ProfileFragment : Fragment() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.log_out)
             .setMessage(R.string.confirm_logout)
-            .setPositiveButton(R.string.log_out) { _, _ ->
+            .setPositiveButton(R.string.log_out) { _, _ -> // If select the log out button
                 performLogout()
             }
             .setNegativeButton(R.string.cancel, null)
             .show()
     }
 
-
     private fun performLogout() {
         lifecycleScope.launch {
-            googleAuthClient.signOut()
-            userViewModel.clearAllTables()
+            googleAuthClient.signOut() // Sign out google
+            userViewModel.clearAllTables() // Clear all tables in room
             val intent = Intent(requireContext(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clear back stack
             startActivity(intent)
         }
     }
 
-    private  fun loadUserInformation() {
+    private fun loadUserInformation() {
         //Load User information
         lifecycleScope.launch {
-            val user = userViewModel.getUserByUidFromRoom(firebaseAuth.currentUser?.uid.toString())
-            binding.txtDisplayNameProfileFragment.text = user?.displayName
-            binding.txtEmailProfileFragment.text = user?.email
-            Glide.with(requireContext())
+            val user = userViewModel.getUserFromRoomByUid(firebaseAuth.currentUser?.uid.toString()) // Get user from room
+            binding.txtDisplayNameProfileFragment.text = user?.displayName // Set display name
+            binding.txtEmailProfileFragment.text = user?.email // Set email
+            Glide.with(requireContext()) // Load photoUrl
                 .load(user?.photoUrl)
+                .signature(ObjectKey(user?.photoUrl ?: ""))
                 .placeholder(R.drawable.img_default_user_photo)
                 .error(R.drawable.img_default_user_photo)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
                 .into(binding.imgPhotoProfileFragment)
         }
     }

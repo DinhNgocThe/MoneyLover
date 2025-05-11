@@ -7,6 +7,7 @@ import androidx.room.Delete
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.moneylover.data.room.model.Wallet
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WalletDao {
@@ -16,7 +17,11 @@ interface WalletDao {
     @Update
     suspend fun updateWallet(wallet: Wallet)
 
-    // Get wallet by uid
+    // Load wallet by uid, use for home fragment
+    @Query("SELECT * FROM tbl_wallet WHERE uid = :userId LIMIT 1")
+    fun loadWalletsByUid(userId: String): Flow<Wallet?>
+
+    // Get wallet by uid, use for edit balance activity
     @Query("SELECT * FROM tbl_wallet WHERE uid = :userId LIMIT 1")
     suspend fun getWalletsByUid(userId: String): Wallet?
 }

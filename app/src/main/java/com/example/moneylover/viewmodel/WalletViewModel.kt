@@ -7,10 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.moneylover.data.firebasemodel.WalletFirebase
 import com.example.moneylover.data.repository.WalletRepository
 import com.example.moneylover.data.room.model.Wallet
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class WalletViewModel(context: Application) : ViewModel() {
     private val walletRepository = WalletRepository(context)
+    private val _wallet = MutableStateFlow<Wallet?>(null)
+    val wallet: StateFlow<Wallet?> = _wallet
 
     fun insertWalletToRoom(wallet: Wallet) {
         viewModelScope.launch {
@@ -24,12 +28,20 @@ class WalletViewModel(context: Application) : ViewModel() {
         }
     }
 
+    fun loadWalletFromRoomByUid(uid: String) {
+        viewModelScope.launch {
+            walletRepository.loadWalletFromRoomByUid(uid).collect { value ->
+                _wallet.value = value
+            }
+        }
+    }
+
     suspend fun getWalletFromRoomByUid(uid: String): Wallet? {
-        return walletRepository.getWalletByUidFromRoom(uid)
+        return walletRepository.getWalletFromRoomByUid(uid)
     }
 
     suspend fun getWalletFromFirestoreByUid(uid: String): WalletFirebase? {
-        return walletRepository.getWalletByUidFromFirestore(uid)
+        return walletRepository.getWalletFromFirestoreByUid(uid)
     }
 
     fun updateWalletToFirestore(walletFirebase: WalletFirebase) {

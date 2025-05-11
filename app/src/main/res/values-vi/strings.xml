@@ -47,4 +47,6 @@
     <string name="zero">0</string>
     <string name="warning">Cảnh báo</string>
     <string name="limit_amount_warning">Giới hạn chi tiêu cho phép bạn nhận được cảnh báo nếu bạn chi tiêu quá mức.</string>
+    <string name="amount">Số tiền</string>
+    <string name="note">Ghi chú</string>
 </resources>

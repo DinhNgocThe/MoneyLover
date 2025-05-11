@@ -1,23 +1,19 @@
 package com.example.moneylover.ui
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Application
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsetsController
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.signature.ObjectKey
 import com.example.moneylover.R
 import com.example.moneylover.data.room.model.User
 import com.example.moneylover.data.room.model.Wallet
@@ -27,14 +23,18 @@ import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 
 
 class HomeFragment : Fragment() {
     private lateinit var wallet: Wallet
     private lateinit var user: User
     private lateinit var binding: FragmentHomeBinding
+    private var isBalanceHidden = true
+    private var isWalletInitialized = false
     private val firebaseAuth = FirebaseAuth.getInstance()
-    private lateinit var editBalanceLauncher: ActivityResultLauncher<Intent>
+
     private val userViewModel: UserViewModel by lazy {
         ViewModelProvider(
             this,
@@ -58,45 +58,48 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        startLauncher()
-        changeStatusBarColor()
         loadUserInformation()
         loadWalletInformation()
         hiddenBalance()
         editBalance()
     }
 
-    private fun startLauncher() {
-        editBalanceLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                loadWalletInformation()
+    private fun loadUserInformation() {
+        lifecycleScope.launch {
+            user = userViewModel.getUserFromRoomByUid(firebaseAuth.currentUser?.uid.toString())!!
+            binding.txtDisplayNameHomeFragment.text = user.displayName
+            Glide.with(requireContext())
+                .load(user.photoUrl)
+                .signature(ObjectKey(user.photoUrl))
+                .placeholder(R.drawable.img_default_user_photo)
+                .error(R.drawable.img_default_user_photo)
+                .into(binding.imgPhotoHomeFragment)
+        }
+    }
+
+    private fun loadWalletInformation() {
+        walletViewModel.loadWalletFromRoomByUid(firebaseAuth.currentUser?.uid.toString())
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                walletViewModel.wallet.collect { value ->
+                    value?.let {
+                        wallet = it
+                        isWalletInitialized = true
+                    }
+                }
             }
         }
-    }
-
-    private fun editBalance() {
-        binding.btnEditBalanceHomeFragment.setOnClickListener {
-            val intent = Intent(this.requireContext(), EditBalanceActivity::class.java)
-            editBalanceLauncher.launch(intent)
-        }
-    }
-
-    private fun changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val window = requireActivity().window
-            val insetsController = window.insetsController
-            window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.background)
-            insetsController?.setSystemBarsAppearance(
-                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
-                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            )
-        }
+        binding.txtBalanceHomeFragment.text = getString(R.string.balance_when_hidden)
+        binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_hidden)
     }
 
     @SuppressLint("SetTextI18n")
     private fun hiddenBalance() {
+        // Event hidden and show balance
         binding.btnHiddenBalanceHomeFragment.setOnClickListener {
-            if (binding.btnHiddenBalanceHomeFragment.drawable.constantState == ContextCompat.getDrawable(requireContext(), R.drawable.ic_show)?.constantState) {
+            if (!isWalletInitialized) return@setOnClickListener
+            isBalanceHidden = !isBalanceHidden
+            if (!isBalanceHidden) {
                 binding.txtBalanceHomeFragment.text = getString(R.string.balance_when_hidden)
                 binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_hidden)
             } else {
@@ -106,31 +109,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun loadWalletInformation() {
-        lifecycleScope.launch {
-            wallet = walletViewModel.getWalletFromRoomByUid(firebaseAuth.currentUser?.uid.toString())!!
+    private fun editBalance() {
+        binding.btnEditBalanceHomeFragment.setOnClickListener {
             binding.txtBalanceHomeFragment.text = getString(R.string.balance_when_hidden)
             binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_hidden)
+            isBalanceHidden = !isBalanceHidden
+            val intent = Intent(this.requireContext(), EditBalanceActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    private fun loadUserInformation() {
-        lifecycleScope.launch {
-            user = userViewModel.getUserByUidFromRoom(firebaseAuth.currentUser?.uid.toString())!!
-            binding.txtDisplayNameHomeFragment.text = user.displayName
-            Glide.with(requireContext())
-                .load(user.photoUrl)
-                .placeholder(R.drawable.img_default_user_photo)
-                .error(R.drawable.img_default_user_photo)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true)
-                .into(binding.imgPhotoHomeFragment)
-        }
-    }
-
-    private fun formatCurrency(balance: Double): String {
-        val decimalFormat = DecimalFormat("#,###.###")
-        return decimalFormat.format(balance)
+    private fun formatCurrency(value: Double): String {
+        val symbols = DecimalFormatSymbols(Locale("vi", "VN"))
+        return DecimalFormat("#,###", symbols).format(value)
     }
 }

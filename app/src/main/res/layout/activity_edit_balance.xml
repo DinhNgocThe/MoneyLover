@@ -79,7 +79,7 @@
                 android:fontFamily="@font/main_font"
                 android:gravity="center_vertical|end"
                 android:hint="@string/zero"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:paddingStart="15dp"
                 android:paddingEnd="50dp"
                 android:text="@string/default_balance"
@@ -128,7 +128,7 @@
                 android:fontFamily="@font/main_font"
                 android:gravity="center_vertical|end"
                 android:hint="@string/zero"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:paddingStart="15dp"
                 android:paddingEnd="50dp"
                 android:text="@string/zero"
@@ -153,17 +153,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/imgWarningEditBalanceActivity"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="20dp"
-        android:contentDescription="@string/warning"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3"
-        app:srcCompat="@drawable/ic_warning" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSaveEditBalanceActivity"
         android:layout_width="match_parent"
@@ -180,19 +169,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgWarningEditBalanceActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutWarningEditBalanceActivity" />
 
-    <TextView
-        android:id="@+id/txtWarningEditBalanceActivity"
-        android:layout_width="310dp"
+    <LinearLayout
+        android:id="@+id/layoutWarningEditBalanceActivity"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/main_font"
-        android:text="@string/limit_amount_warning"
-        android:textColor="@color/brown"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/imgWarningEditBalanceActivity"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+        <ImageView
+            android:id="@+id/imgWarningEditBalanceActivity"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/warning"
+            app:srcCompat="@drawable/ic_warning" />
+
+        <TextView
+            android:id="@+id/txtWarningEditBalanceActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/main_font"
+            android:text="@string/limit_amount_warning"
+            android:textColor="@color/brown"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

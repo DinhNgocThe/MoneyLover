@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 class UserViewModel(context: Application) : ViewModel() {
     private val userRepository = UserRepository(context)
 
-    suspend fun getUserByUidFromRoom(uid: String) : User? {
-        return userRepository.getUserByUidFromRoom(uid)
+    suspend fun getUserFromRoomByUid(uid: String) : User? {
+        return userRepository.getUserFromRoomByUid(uid)
     }
 
-    suspend fun getUserByUidFromFirestore(uid: String) : UserFirebase? {
-        return userRepository.getUserByUidFromFirestore(uid)
+    suspend fun getUserFromFirestoreByUid(uid: String) : UserFirebase? {
+        return userRepository.getUserFromFirestoreByUid(uid)
     }
 
     fun saveUserToRoom(user: User) {

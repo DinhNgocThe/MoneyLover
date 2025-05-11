@@ -27,7 +27,7 @@
     <string name="transactions">Transactions</string>
     <string name="budget">Budget</string>
     <string name="profile">Profile</string>
-    <string name="add_transaction">Add Transaction</string>
+    <string name="add_transaction">Add transaction</string>
     <string name="photo_user">Photo User</string>
     <string name="display_name">Display Name</string>
     <string name="log_out">Log out</string>
@@ -47,4 +47,6 @@
     <string name="zero">0</string>
     <string name="warning">Warning</string>
     <string name="limit_amount_warning">Limit Amount allows you to receive alerts if you overspend.</string>
+    <string name="amount">Amount</string>
+    <string name="note">Note</string>
 </resources>

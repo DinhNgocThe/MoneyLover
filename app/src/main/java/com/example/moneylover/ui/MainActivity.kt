@@ -1,5 +1,6 @@
 package com.example.moneylover.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,24 +23,32 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        eventNavBar()
+        eventNavBar() //Event select item nav bar
+        addTransaction() //Event select add transaction button
     }
 
     private fun eventNavBar() {
-        replaceFragment(HomeFragment())
+        replaceFragment(HomeFragment()) //Open home fragment by default
         binding.bottomNavMainActivity.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navHome -> replaceFragment(HomeFragment())
-
                 R.id.navProfile -> replaceFragment(ProfileFragment())
             }
             true
         }
     }
 
+    //Replace fragment
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
+    }
+
+    private fun addTransaction() {
+        binding.navBtnAddTransactionMainActivity.setOnClickListener {
+            val intent = Intent(this, AddTransactionActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
