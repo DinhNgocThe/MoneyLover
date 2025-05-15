@@ -56,16 +56,18 @@
             android:src="@drawable/ic_add_transaction" />
     </androidx.cardview.widget.CardView>
 
-    <FrameLayout
-        android:id="@+id/fragmentContainer"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navHostFragmentMainActivity"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:navGraph="@navigation/nav_graph"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
+    </androidx.fragment.app.FragmentContainerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

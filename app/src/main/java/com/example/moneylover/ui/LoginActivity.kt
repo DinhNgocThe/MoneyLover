@@ -16,6 +16,7 @@ import com.example.moneylover.data.firebasemodel.WalletFirebase
 import com.example.moneylover.data.room.model.User
 import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.ActivityLoginBinding
+import com.example.moneylover.viewmodel.ExpenseCategoryViewModel
 import com.example.moneylover.viewmodel.UserViewModel
 import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.Timestamp
@@ -37,6 +38,12 @@ class LoginActivity : AppCompatActivity() {
             this,
             WalletViewModel.WalletViewModelFactory(this.application)
         )[WalletViewModel::class.java]
+    }
+    private val expenseCategoryViewModel: ExpenseCategoryViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ExpenseCategoryViewModel.ExpenseCategoryViewModelFactory(this.application)
+        )[ExpenseCategoryViewModel::class.java]
     }
 
 
@@ -87,6 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 if (isSuccess) { // If success save user information to database and init wallet
                     saveUserToDb()
                     saveWalletToDb()
+                    saveExpenseCategoriesToDb()
                     //Go to MainActivity
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
@@ -143,5 +151,10 @@ class LoginActivity : AppCompatActivity() {
             walletFirebase?.totalExpense ?: 0.0
         )
         walletViewModel.insertWalletToRoom(wallet)
+    }
+
+    private fun saveExpenseCategoriesToDb() {
+        expenseCategoryViewModel.getDefaultExpenseCategoriesFromFirestoreAndSaveToRoom()
+        expenseCategoryViewModel.getExpenseCategoriesFromFirestoreByUidAndSaveToRoom(firebaseAuth.currentUser?.uid ?: "")
     }
 }

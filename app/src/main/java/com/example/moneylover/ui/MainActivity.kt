@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.moneylover.R
 import com.example.moneylover.databinding.ActivityMainBinding
 
@@ -28,21 +30,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun eventNavBar() {
-        replaceFragment(HomeFragment()) //Open home fragment by default
-        binding.bottomNavMainActivity.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navHome -> replaceFragment(HomeFragment())
-                R.id.navProfile -> replaceFragment(ProfileFragment())
-            }
-            true
-        }
-    }
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.navHostFragmentMainActivity) as androidx.navigation.fragment.NavHostFragment
+        val navController = navHostFragment.navController
+        NavigationUI.setupWithNavController(binding.bottomNavMainActivity, navController)
 
-    //Replace fragment
-    private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .commit()
     }
 
     private fun addTransaction() {

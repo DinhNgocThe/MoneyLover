@@ -106,19 +106,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/btnHiddenBalanceHomeFragment"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="3dp"
-                    android:background="@null"
-                    android:padding="12dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_hidden"
-                    android:contentDescription="@string/hidden_balance"
-                    app:layout_constraintBottom_toBottomOf="@+id/txtBalanceHomeFragment"
-                    app:layout_constraintStart_toEndOf="@+id/txtBalanceHomeFragment"
-                    app:layout_constraintTop_toTopOf="@+id/txtBalanceHomeFragment" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

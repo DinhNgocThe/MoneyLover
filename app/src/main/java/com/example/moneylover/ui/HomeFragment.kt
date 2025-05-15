@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
     private lateinit var wallet: Wallet
     private lateinit var user: User
     private lateinit var binding: FragmentHomeBinding
-    private var isBalanceHidden = true
     private var isWalletInitialized = false
     private val firebaseAuth = FirebaseAuth.getInstance()
 
@@ -60,7 +59,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadUserInformation()
         loadWalletInformation()
-        hiddenBalance()
         editBalance()
     }
 
@@ -77,6 +75,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadWalletInformation() {
         walletViewModel.loadWalletFromRoomByUid(firebaseAuth.currentUser?.uid.toString())
         lifecycleScope.launch {
@@ -85,35 +84,15 @@ class HomeFragment : Fragment() {
                     value?.let {
                         wallet = it
                         isWalletInitialized = true
+                        binding.txtBalanceHomeFragment.text = formatCurrency(wallet.balance) + " " + getString(R.string.vnd)
                     }
                 }
-            }
-        }
-        binding.txtBalanceHomeFragment.text = getString(R.string.balance_when_hidden)
-        binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_hidden)
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun hiddenBalance() {
-        // Event hidden and show balance
-        binding.btnHiddenBalanceHomeFragment.setOnClickListener {
-            if (!isWalletInitialized) return@setOnClickListener
-            isBalanceHidden = !isBalanceHidden
-            if (!isBalanceHidden) {
-                binding.txtBalanceHomeFragment.text = getString(R.string.balance_when_hidden)
-                binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_hidden)
-            } else {
-                binding.txtBalanceHomeFragment.text = formatCurrency(wallet.balance) + " " + getString(R.string.vnd)
-                binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_show)
             }
         }
     }
 
     private fun editBalance() {
         binding.btnEditBalanceHomeFragment.setOnClickListener {
-            binding.txtBalanceHomeFragment.text = getString(R.string.balance_when_hidden)
-            binding.btnHiddenBalanceHomeFragment.setImageResource(R.drawable.ic_hidden)
-            isBalanceHidden = !isBalanceHidden
             val intent = Intent(this.requireContext(), EditBalanceActivity::class.java)
             startActivity(intent)
         }

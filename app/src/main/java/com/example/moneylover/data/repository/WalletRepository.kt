@@ -13,13 +13,9 @@ import kotlinx.coroutines.tasks.await
 
 class WalletRepository(context: Application) {
     private val tag = "WalletRepository"
-    private val walletDao: WalletDao
     private val fireStore = FirebaseFirestore.getInstance()
-
-    init {
-        val localDatabase: LocalDatabase = LocalDatabase.getInstance(context)
-        walletDao = localDatabase.walletDao()
-    }
+    private val localDatabase = LocalDatabase.getInstance(context)
+    private val walletDao = localDatabase.walletDao()
 
     suspend fun insertWalletToRoom(wallet: Wallet) {
         try {

@@ -49,4 +49,15 @@
     <string name="limit_amount_warning">Giới hạn chi tiêu cho phép bạn nhận được cảnh báo nếu bạn chi tiêu quá mức.</string>
     <string name="amount">Số tiền</string>
     <string name="note">Ghi chú</string>
+    <string name="calendar">Lịch</string>
+    <string name="type">Loại</string>
+    <string name="select_group">Chọn nhóm</string>
+    <string name="default_date">11/12/2024</string>
+    <string name="add">Thêm</string>
+    <string name="f_and_b">Ăn uống</string>
+    <string name="travel">Di chuyển</string>
+    <string name="beautify">Làm đẹp</string>
+    <string name="entertainment">Giải trí</string>
+    <string name="personal_belongings">Đồ dùng cá nhân</string>
+    <string name="bill">Hóa đơn</string>
 </resources>
