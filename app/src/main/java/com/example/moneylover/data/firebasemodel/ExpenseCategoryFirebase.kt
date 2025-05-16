@@ -4,5 +4,6 @@ data class ExpenseCategoryFirebase(
     val id: String? = "",
     val uid: String = "",
     val name: String = "",
-    val iconUrl: String = ""
+    val iconUrl: String = "",
+    val type: String = "expense"
 )

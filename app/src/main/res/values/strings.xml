@@ -60,4 +60,11 @@
     <string name="entertainment">Entertainment</string>
     <string name="personal_belongings">Personal belongings</string>
     <string name="bill">Bill</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="expense">Expense</string>
+    <string name="income">Income</string>
+    <string name="category_icon">Category icon</string>
+    <string name="incoming_transfer">Incoming transfer</string>
+    <string name="salary">Salary</string>
+    <string name="other_income">Other Income</string>
 </resources>

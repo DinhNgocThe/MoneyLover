@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MoneyLover"
         tools:targetApi="31">
         <activity
-            android:name=".ui.ExpenseCategoryActivity"
+            android:name=".ui.SelectGroupActivity"
             android:exported="false" />
         <activity
             android:name=".ui.AddTransactionActivity"

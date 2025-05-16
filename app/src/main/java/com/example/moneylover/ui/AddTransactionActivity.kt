@@ -1,14 +1,19 @@
 package com.example.moneylover.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.example.moneylover.R
+import com.example.moneylover.data.room.model.ExpenseCategory
 import com.example.moneylover.databinding.ActivityAddTransactionBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.DecimalFormat
@@ -23,6 +28,23 @@ class AddTransactionActivity : AppCompatActivity() {
     private val calendar = Calendar.getInstance()
     private val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     private lateinit var datePicker: MaterialDatePicker<Long>
+    private lateinit var category: ExpenseCategory
+
+    private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            val category = data?.getSerializableExtra("11") as? ExpenseCategory
+            if (category != null) {
+                this.category = category
+                binding.txtTypeAddTransactionActivity.text = category.name
+                Glide.with(this)
+                    .load(category.iconUrl)
+                    .placeholder(R.drawable.ic_type)
+                    .error(R.drawable.ic_warning)
+                    .into(binding.imgTypeAddTransactionActivity)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +59,7 @@ class AddTransactionActivity : AppCompatActivity() {
         goBack()
         formatEditText(binding.edtAmountAddTransactionActivity)
         initDatePicker()
+        selectGroup()
     }
 
     private fun goBack() {
@@ -101,6 +124,13 @@ class AddTransactionActivity : AppCompatActivity() {
         datePicker.addOnPositiveButtonClickListener { selection ->
             val date = Date(selection)
             binding.txtDateAddTransactionActivity.text = simpleDateFormat.format(date)
+        }
+    }
+
+    private fun selectGroup() {
+        binding.cardViewTypeAddTransactionActivity.setOnClickListener {
+            val intent = Intent(this, SelectGroupActivity::class.java)
+            launcher.launch(intent)
         }
     }
 }

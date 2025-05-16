@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 
 class ExpenseCategoryViewModel(private val context: Application) : ViewModel() {
     private val expenseCategoryRepository = ExpenseCategoryRepository(context)
+    val expenseCategories = expenseCategoryRepository.getExpenseCategoriesFromRoom()
+    val incomeCategories = expenseCategoryRepository.getIncomeCategoriesFromRoom()
 
     fun getDefaultExpenseCategoriesFromFirestoreAndSaveToRoom() {
         viewModelScope.launch {
@@ -47,7 +49,8 @@ class ExpenseCategoryViewModel(private val context: Application) : ViewModel() {
             id = id ?: "",
             uid = uid,
             name = name,
-            iconUrl = iconUrl
+            iconUrl = iconUrl,
+            type = type
         )
     }
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SelectGroupActivity">
+
+    <ImageButton
+        android:id="@+id/btnBackSelectGroupActivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:contentDescription="@string/button_back"
+        android:padding="14dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow"
+        app:tint="@color/btn_image_ic" />
+
+    <TextView
+        android:id="@+id/txtSelectGroupSelectGroupActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/main_font_bold"
+        android:text="@string/select_group"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutSelectGroupActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:tabTextAppearance="@style/CustomTabLayoutSelectGroupActivity"
+        android:contentDescription="@string/select_group"
+        app:tabTextColor="@color/brown"
+        app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/main_color"
+        app:tabRippleColor="@color/grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSelectGroupSelectGroupActivity" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerSelectGroupActivity"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayoutSelectGroupActivity" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

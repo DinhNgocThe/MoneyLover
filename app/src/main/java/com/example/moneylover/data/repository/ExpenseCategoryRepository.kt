@@ -2,6 +2,7 @@ package com.example.moneylover.data.repository
 
 import android.app.Application
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.example.moneylover.data.firebasemodel.ExpenseCategoryFirebase
 import com.example.moneylover.data.room.LocalDatabase
 import com.example.moneylover.data.room.model.ExpenseCategory
@@ -14,7 +15,7 @@ class ExpenseCategoryRepository(context: Application) {
     private val localDatabase = LocalDatabase.getInstance(context)
     private val expenseCategoryDao = localDatabase.expenseCategoryDao()
 
-    suspend fun getDefaultExpenseCategoriesFromFirestore(): MutableList<ExpenseCategoryFirebase> {
+    suspend fun getDefaultExpenseCategoriesFromFirestore(): List<ExpenseCategoryFirebase> {
         return try {
             firestore.collection("expense_categories")
                 .whereEqualTo("uid", "default")
@@ -29,7 +30,7 @@ class ExpenseCategoryRepository(context: Application) {
         }
     }
 
-    suspend fun getExpenseCategoriesFromFirestoreByUid(uid: String): MutableList<ExpenseCategoryFirebase> {
+    suspend fun getExpenseCategoriesFromFirestoreByUid(uid: String): List<ExpenseCategoryFirebase> {
         return try {
             firestore.collection("expense_categories")
                 .whereEqualTo("uid", uid)
@@ -50,5 +51,13 @@ class ExpenseCategoryRepository(context: Application) {
         } catch (e: Exception) {
             Log.e(tag, "Error inserting expense categories to room: ${e.message}", e)
         }
+    }
+
+    fun getExpenseCategoriesFromRoom(): LiveData<List<ExpenseCategory>> {
+        return expenseCategoryDao.getExpenseCategories()
+    }
+
+    fun getIncomeCategoriesFromRoom(): LiveData<List<ExpenseCategory>> {
+        return expenseCategoryDao.getIncomeCategories()
     }
 }

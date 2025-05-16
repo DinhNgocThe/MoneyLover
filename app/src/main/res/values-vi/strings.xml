@@ -60,4 +60,10 @@
     <string name="entertainment">Giải trí</string>
     <string name="personal_belongings">Đồ dùng cá nhân</string>
     <string name="bill">Hóa đơn</string>
+    <string name="expense">Khoản chi</string>
+    <string name="income">Khoản thu</string>
+    <string name="category_icon">Ảnh nhóm chi tiêu</string>
+    <string name="incoming_transfer">Tiền chuyển đến</string>
+    <string name="salary">Tiền lương</string>
+    <string name="other_income">Thu nhập khác</string>
 </resources>

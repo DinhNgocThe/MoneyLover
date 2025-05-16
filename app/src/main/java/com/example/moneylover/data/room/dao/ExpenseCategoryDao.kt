@@ -1,5 +1,6 @@
 package com.example.moneylover.data.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,6 +15,9 @@ interface ExpenseCategoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExpenseCategory(expenseCategory: ExpenseCategory)
 
-    @Query("SELECT * FROM tbl_expense_category")
-    suspend fun getAllExpenseCategories(): List<ExpenseCategory>
+    @Query("SELECT * FROM tbl_expense_category WHERE type = 'expense' ORDER BY name")
+    fun getExpenseCategories(): LiveData<List<ExpenseCategory>>
+
+    @Query("SELECT * FROM tbl_expense_category WHERE type = 'income' ORDER BY name")
+    fun getIncomeCategories(): LiveData<List<ExpenseCategory>>
 }
