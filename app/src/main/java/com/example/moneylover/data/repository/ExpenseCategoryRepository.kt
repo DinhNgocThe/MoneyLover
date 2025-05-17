@@ -53,6 +53,26 @@ class ExpenseCategoryRepository(context: Application) {
         }
     }
 
+    suspend fun insertExpenseCategoryToRoom(expenseCategory: ExpenseCategory) {
+        try {
+            expenseCategoryDao.insertExpenseCategory(expenseCategory)
+        } catch (e: Exception) {
+            Log.e(tag, "Error inserting expense category to room: ${e.message}", e)
+        }
+    }
+
+    suspend fun insertExpenseCategoryToFirestore(expenseCategoryFirebase: ExpenseCategoryFirebase) : String? {
+        return try {
+            val documentRef = firestore.collection("expense_categories").add(expenseCategoryFirebase).await()
+            documentRef.update("id", documentRef.id).await()
+            Log.d(tag, "Expense category added with ID: ${documentRef.id}")
+            documentRef.id
+        } catch (e: Exception) {
+            Log.e(tag, "Error inserting expense to firestore: ${e.message}", e)
+            null
+        }
+    }
+
     fun getExpenseCategoriesFromRoom(): LiveData<List<ExpenseCategory>> {
         return expenseCategoryDao.getExpenseCategories()
     }

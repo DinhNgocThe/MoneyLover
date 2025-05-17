@@ -7,6 +7,6 @@ data class TransactionFirebase(
     val uid: String = "",
     val amount: Double = 0.0,
     val description: String = "",
-    val date: Timestamp = Timestamp.now(),
+    val date: Long = System.currentTimeMillis(),
     val type: String = ""
 )

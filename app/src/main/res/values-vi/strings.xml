@@ -66,4 +66,10 @@
     <string name="incoming_transfer">Tiền chuyển đến</string>
     <string name="salary">Tiền lương</string>
     <string name="other_income">Thu nhập khác</string>
+    <string name="new_category">Thêm nhóm mới</string>
+    <string name="category_name">Tên nhóm</string>
+    <string name="eg_category_name">vd: \"Mua sắm online\"</string>
+    <string name="category_type">Loại nhóm</string>
+    <string name="amount_warning">Vui lòng điền số tiền!</string>
+    <string name="category_type_warning">Vui lòng chọn nhóm giao dịch!</string>
 </resources>

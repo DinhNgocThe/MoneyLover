@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import com.example.moneylover.data.firebasemodel.WalletFirebase
 import com.example.moneylover.data.room.LocalDatabase
-import com.example.moneylover.data.room.dao.WalletDao
 import com.example.moneylover.data.room.model.Wallet
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.Flow

@@ -44,6 +44,14 @@ class ExpenseCategoryViewModel(private val context: Application) : ViewModel() {
         }
     }
 
+    suspend fun insertExpenseCategory(expenseCategoryFirebase: ExpenseCategoryFirebase) {
+        val id = expenseCategoryRepository.insertExpenseCategoryToFirestore(expenseCategoryFirebase)
+        if (id != null) {
+            val expenseCategory = expenseCategoryFirebase.toExpenseCategory().copy(id = id)
+            expenseCategoryRepository.insertExpenseCategoryToRoom(expenseCategory)
+        }
+    }
+
     private fun ExpenseCategoryFirebase.toExpenseCategory(): ExpenseCategory {
         return ExpenseCategory(
             id = id ?: "",

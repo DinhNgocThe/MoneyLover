@@ -64,9 +64,9 @@
             android:fontFamily="@font/main_font_bold"
             android:hint="@string/amount"
             android:inputType="number"
+            android:maxLength="15"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:maxLength="15"
             android:textColor="@color/main_color"
             android:textSize="22sp" />
     </LinearLayout>
@@ -87,9 +87,9 @@
             android:id="@+id/imgNoteAddTransactionActivity"
             android:layout_width="60dp"
             android:layout_height="35dp"
-            android:paddingStart="25dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/vnd"
+            android:paddingStart="25dp"
             app:srcCompat="@drawable/ic_note"
             tools:ignore="RtlSymmetry" />
 
@@ -97,18 +97,18 @@
             android:id="@+id/edtNoteAddTransactionActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="55dp"
-            android:minLines="2"
-            android:maxLines="5"
             android:layout_marginStart="10dp"
             android:autofillHints="note"
             android:background="@drawable/edt_white"
             android:fontFamily="@font/main_font"
             android:hint="@string/note"
             android:inputType="textMultiLine"
+            android:maxLength="100"
+            android:maxLines="5"
+            android:minHeight="55dp"
+            android:minLines="2"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:maxLength="100"
             android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
@@ -117,19 +117,19 @@
         android:id="@+id/cardViewDateAddTransactionActivity"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:clickable="true"
         android:focusable="true"
-        app:strokeWidth="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
         app:cardBackgroundColor="@color/white"
-        app:rippleColor="?attr/colorControlHighlight"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linerLayoutNoteAddTransactionActivity" >
+        app:layout_constraintTop_toBottomOf="@+id/linerLayoutNoteAddTransactionActivity"
+        app:rippleColor="?attr/colorControlHighlight"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,9 +141,9 @@
                 android:id="@+id/imgCalendarAddTransactionActivity"
                 android:layout_width="50dp"
                 android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
                 android:contentDescription="@string/calendar"
-                android:layout_gravity="center_vertical"
                 app:srcCompat="@drawable/ic_calendar" />
 
             <TextView
@@ -152,10 +152,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="12dp"
-                android:textSize="20sp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/main_font"
-                android:text="@string/default_date" />
+                android:text="@string/default_date"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -163,19 +163,19 @@
         android:id="@+id/cardViewTypeAddTransactionActivity"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:clickable="true"
         android:focusable="true"
-        app:strokeWidth="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
         app:cardBackgroundColor="@color/white"
-        app:rippleColor="?attr/colorControlHighlight"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewDateAddTransactionActivity" >
+        app:layout_constraintTop_toBottomOf="@+id/cardViewDateAddTransactionActivity"
+        app:rippleColor="?attr/colorControlHighlight"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -187,9 +187,9 @@
                 android:id="@+id/imgTypeAddTransactionActivity"
                 android:layout_width="50dp"
                 android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="12dp"
                 android:contentDescription="@string/type"
-                android:layout_gravity="center_vertical"
                 app:srcCompat="@drawable/ic_type" />
 
             <TextView
@@ -198,11 +198,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="15dp"
-                android:textSize="22sp"
                 android:layout_marginBottom="1dp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/main_font"
-                android:text="@string/select_group" />
+                android:text="@string/select_group"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -211,8 +211,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="45dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/btn_green"
         android:fontFamily="@font/main_font"
         android:text="@string/save"
@@ -221,6 +221,19 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTypeAddTransactionActivity" />
+
+    <TextView
+        android:id="@+id/txtWarningAddTransactionActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="3dp"
+        android:fontFamily="@font/main_font"
+        android:text=""
+        android:textColor="@color/red"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewTypeAddTransactionActivity"
         app:layout_constraintTop_toBottomOf="@+id/cardViewTypeAddTransactionActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,37 +1,55 @@
 package com.example.moneylover.ui
 
-import android.app.Activity
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.moneylover.R
+import com.example.moneylover.data.firebasemodel.TransactionFirebase
 import com.example.moneylover.data.room.model.ExpenseCategory
 import com.example.moneylover.databinding.ActivityAddTransactionBinding
+import com.example.moneylover.viewmodel.TransactionViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import kotlin.properties.Delegates
 
 class AddTransactionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddTransactionBinding
+    private val tag = "Add transaction activity"
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private val calendar = Calendar.getInstance()
     private val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     private lateinit var datePicker: MaterialDatePicker<Long>
     private lateinit var category: ExpenseCategory
+    private var dateFirebase by Delegates.notNull<Long>()
+
+    private val transactionViewModel: TransactionViewModel by lazy {
+        ViewModelProvider(
+            this,
+            TransactionViewModel.TransactionViewModelFactory(this.applicationContext as Application)
+        )[TransactionViewModel::class.java]
+    }
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
+        if (result.resultCode == RESULT_OK) {
             val data = result.data
             val category = data?.getSerializableExtra("11") as? ExpenseCategory
             if (category != null) {
@@ -60,6 +78,7 @@ class AddTransactionActivity : AppCompatActivity() {
         formatEditText(binding.edtAmountAddTransactionActivity)
         initDatePicker()
         selectGroup()
+        addTransaction()
     }
 
     private fun goBack() {
@@ -109,6 +128,7 @@ class AddTransactionActivity : AppCompatActivity() {
         datePicker = MaterialDatePicker.Builder.datePicker()
             .setSelection(today.time)
             .build()
+        dateFirebase = today.time
         binding.txtDateAddTransactionActivity.text = simpleDateFormat.format(today)
 
         // Event show date picker
@@ -124,6 +144,7 @@ class AddTransactionActivity : AppCompatActivity() {
         datePicker.addOnPositiveButtonClickListener { selection ->
             val date = Date(selection)
             binding.txtDateAddTransactionActivity.text = simpleDateFormat.format(date)
+            dateFirebase = date.time
         }
     }
 
@@ -131,6 +152,39 @@ class AddTransactionActivity : AppCompatActivity() {
         binding.cardViewTypeAddTransactionActivity.setOnClickListener {
             val intent = Intent(this, SelectGroupActivity::class.java)
             launcher.launch(intent)
+        }
+    }
+
+    private fun addTransaction() {
+        binding.btnAddAddTransactionActivity.setOnClickListener {
+            if (binding.edtAmountAddTransactionActivity.text.toString() == "") {
+                binding.txtWarningAddTransactionActivity.text = getString(R.string.amount_warning)
+                binding.edtAmountAddTransactionActivity.requestFocus()
+                return@setOnClickListener
+            }
+            if (binding.txtTypeAddTransactionActivity.text.toString() == getString(R.string.select_group)) {
+                binding.txtWarningAddTransactionActivity.text = getString(R.string.category_type_warning)
+                return@setOnClickListener
+            }
+            binding.btnAddAddTransactionActivity.isEnabled = false
+            lifecycleScope.launch {
+                try {
+                    val amount = binding.edtAmountAddTransactionActivity.text.toString().replace(".", "").toDouble()
+                    val description = binding.edtNoteAddTransactionActivity.text.toString()
+                    val transactionFirebase = TransactionFirebase(
+                        uid = firebaseAuth.currentUser?.uid ?: "",
+                        amount = amount,
+                        description = description,
+                        date = dateFirebase,
+                        type = category.id
+                    )
+                    transactionViewModel.insertTransaction(transactionFirebase)
+                    finish()
+                } catch (e: Exception) {
+                    Log.e(tag, "Error adding transaction", e)
+                    binding.btnAddAddTransactionActivity.isEnabled = true
+                }
+            }
         }
     }
 }

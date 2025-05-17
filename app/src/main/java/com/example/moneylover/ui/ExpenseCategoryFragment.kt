@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneylover.adapter.CategoryAdapter
@@ -36,10 +37,11 @@ class ExpenseCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadExpenseCategories()
+        addCategory()
     }
 
     private fun loadExpenseCategories() {
-        adapter = CategoryAdapter(requireContext(), onCategoryClick, {})
+        adapter = CategoryAdapter(requireContext(), onCategoryClick, onCategoryLongClick)
         binding.rcvExpenseCategoryExpenseCategoryFragment.adapter = adapter
         binding.rcvExpenseCategoryExpenseCategoryFragment.layoutManager = LinearLayoutManager(requireContext())
         binding.rcvExpenseCategoryExpenseCategoryFragment.setHasFixedSize(true)
@@ -54,5 +56,16 @@ class ExpenseCategoryFragment : Fragment() {
         }
         requireActivity().setResult(Activity.RESULT_OK, resultIntent)
         requireActivity().finish()
+    }
+
+    private val onCategoryLongClick: (ExpenseCategory) -> Unit = {
+        Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun addCategory() {
+        binding.btnAddCategoryExpenseCategoryFragment.setOnClickListener {
+            val intent = Intent(this.requireContext(), AddCategoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

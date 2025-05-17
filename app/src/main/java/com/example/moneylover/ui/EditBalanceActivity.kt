@@ -3,6 +3,7 @@ package com.example.moneylover.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,7 @@ import java.util.Locale
 
 class EditBalanceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditBalanceBinding
+    private val tag = "Edit balance activity"
     private val firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var wallet: Wallet
     private var originalBalance: Double = 0.0 // Original balance and limit amount to enable save button when 1 of 2 changes
@@ -116,32 +118,38 @@ class EditBalanceActivity : AppCompatActivity() {
 
     private fun updateWallet() {
         binding.btnSaveEditBalanceActivity.setOnClickListener {
-            val balanceText = binding.edtBalanceEditBalanceActivity.text.toString().replace(".", "")
-            val limitAmountText = binding.edtLimitAmountEditBalanceActivity.text.toString().replace(".", "")
+            binding.btnSaveEditBalanceActivity.isEnabled = false
+            try {
+                val balanceText = binding.edtBalanceEditBalanceActivity.text.toString().replace(".", "")
+                val limitAmountText = binding.edtLimitAmountEditBalanceActivity.text.toString().replace(".", "")
 
-            // Convert string to double
-            val balance = if (balanceText.isNotEmpty()) balanceText.toDoubleOrNull() ?: 0.0 else 0.0
-            val limitAmount = if (limitAmountText.isNotEmpty()) limitAmountText.toDoubleOrNull() ?: 0.0 else 0.0
+                // Convert string to double
+                val balance = if (balanceText.isNotEmpty()) balanceText.toDoubleOrNull() ?: 0.0 else 0.0
+                val limitAmount = if (limitAmountText.isNotEmpty()) limitAmountText.toDoubleOrNull() ?: 0.0 else 0.0
 
-            // Update wallet to room and firestore
-            val walletRoom = Wallet(
-                wallet.id,
-                wallet.uid,
-                balance,
-                limitAmount,
-                wallet.totalExpense
-            )
-            val walletFirebase = WalletFirebase(
-                wallet.id,
-                wallet.uid,
-                balance,
-                limitAmount,
-                wallet.totalExpense
-            )
+                // Update wallet to room and firestore
+                val walletRoom = Wallet(
+                    wallet.id,
+                    wallet.uid,
+                    balance,
+                    limitAmount,
+                    wallet.totalExpense
+                )
+                val walletFirebase = WalletFirebase(
+                    wallet.id,
+                    wallet.uid,
+                    balance,
+                    limitAmount,
+                    wallet.totalExpense
+                )
 
-            walletViewModel.updateWalletToRoom(walletRoom)
-            walletViewModel.updateWalletToFirestore(walletFirebase)
-            finish()
+                walletViewModel.updateWalletToRoom(walletRoom)
+                walletViewModel.updateWalletToFirestore(walletFirebase)
+                finish()
+            } catch (e: Exception) {
+                Log.e(tag, "Error updating wallet", e)
+                binding.btnSaveEditBalanceActivity.isEnabled = true
+            }
         }
     }
 

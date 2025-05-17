@@ -66,5 +66,11 @@
     <string name="category_icon">Category icon</string>
     <string name="incoming_transfer">Incoming transfer</string>
     <string name="salary">Salary</string>
-    <string name="other_income">Other Income</string>
+    <string name="other_income">Other income</string>
+    <string name="new_category">New category</string>
+    <string name="category_name">Category name</string>
+    <string name="eg_category_name">eg: \"Online shopping\"</string>
+    <string name="category_type">Category type</string>
+    <string name="amount_warning">Please enter amount!</string>
+    <string name="category_type_warning">Please select category type!</string>
 </resources>

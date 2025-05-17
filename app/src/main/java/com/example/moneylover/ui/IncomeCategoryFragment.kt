@@ -36,6 +36,7 @@ class IncomeCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadExpenseCategories()
+        addCategory()
     }
 
     private fun loadExpenseCategories() {
@@ -54,5 +55,12 @@ class IncomeCategoryFragment : Fragment() {
         }
         requireActivity().setResult(Activity.RESULT_OK, resultIntent)
         requireActivity().finish()
+    }
+
+    private fun addCategory() {
+        binding.btnAddCategoryIncomeCategoryFragment.setOnClickListener {
+            val intent = Intent(this.requireContext(), AddCategoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.AddCategoryActivity">
+
+    <ImageButton
+        android:id="@+id/btnBackAddCategoryActivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:contentDescription="@string/button_back"
+        android:padding="14dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow"
+        app:tint="@color/btn_image_ic" />
+
+    <TextView
+        android:id="@+id/txtNewCategoryAddCategoryActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/main_font_bold"
+        android:text="@string/new_category"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtCategoryNameAddCategoryActivity"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:autofillHints=""
+        android:background="@drawable/edt_white"
+        android:ems="10"
+        android:fontFamily="@font/main_font"
+        android:hint="@string/eg_category_name"
+        android:inputType="text"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNewCategoryAddCategoryActivity" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewTypeCategoryAddCategoryActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtCategoryNameAddCategoryActivity"
+        app:strokeColor="@color/main_color"
+        app:strokeWidth="1dp">
+
+        <RadioGroup
+            android:id="@+id/radSelectCategoryTypeAddCategoryActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCategoryAddCategoryActivity">
+
+            <RadioButton
+                android:id="@+id/radExpenseAddCategoryActivity"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:fontFamily="@font/main_font"
+                android:gravity="center"
+                android:text="@string/expense"
+                android:textColor="@color/radio_flat_text_selector"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radIncomeAddCategoryActivity"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/main_font"
+                android:gravity="center"
+                android:text="@string/income"
+                android:textColor="@color/radio_flat_text_selector"
+                android:textSize="16sp" />
+        </RadioGroup>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtCategoryNameAddCategoryActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category_name"
+        android:textSize="18sp"
+        android:fontFamily="@font/main_font_bold"
+        android:textColor="@color/brown"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/edtCategoryNameAddCategoryActivity"
+        app:layout_constraintStart_toStartOf="@+id/edtCategoryNameAddCategoryActivity" />
+
+    <TextView
+        android:id="@+id/txtTypeCategoryAddCategoryActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type"
+        android:textSize="18sp"
+        android:fontFamily="@font/main_font_bold"
+        android:textColor="@color/brown"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewTypeCategoryAddCategoryActivity"
+        app:layout_constraintStart_toStartOf="@+id/cardViewTypeCategoryAddCategoryActivity" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSaveAddCategoryActivity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/btn_green"
+        android:fontFamily="@font/main_font"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTypeCategoryAddCategoryActivity" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,13 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.ExpenseCategoryFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btnAddCategoryExpenseCategoryFragment"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgAddCategoryExpenseCategoryFragment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="27dp"
+            android:contentDescription="@string/new_category"
+            android:src="@drawable/ic_add_transaction"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtAddCategoryExpenseCategoryFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/main_font"
+            android:text="@string/new_category"
+            android:textColor="@color/main_color"
+            android:layout_marginStart="10dp"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgAddCategoryExpenseCategoryFragment"
+            app:layout_constraintStart_toEndOf="@+id/imgAddCategoryExpenseCategoryFragment"
+            app:layout_constraintTop_toTopOf="@+id/imgAddCategoryExpenseCategoryFragment" />
+
+        <View
+            android:id="@+id/viewExpenseCategoryFragment"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvExpenseCategoryExpenseCategoryFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/expense"/>
-</FrameLayout>
+        android:layout_height="0dp"
+        android:contentDescription="@string/expense"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddCategoryExpenseCategoryFragment" />
+</androidx.constraintlayout.widget.ConstraintLayout>
