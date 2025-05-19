@@ -36,7 +36,6 @@ class SelectGroupActivity : AppCompatActivity() {
         val adapter = CategoryViewPagerAdapter(this)
         binding.viewPagerSelectGroupActivity.adapter = adapter
 
-        // 2. Gắn TabLayout với ViewPager2
         val tabTitles = listOf(getString(R.string.expense), getString(R.string.income))
         TabLayoutMediator(binding.tabLayoutSelectGroupActivity, binding.viewPagerSelectGroupActivity) { tab, position ->
             tab.text = tabTitles[position]

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.TransactionFragment">
+
+    <TextView
+        android:id="@+id/txtTempTransactionFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/my_balance"
+        android:fontFamily="@font/main_font_bold"
+        android:textSize="16sp"
+        android:textColor="@color/main_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtBalanceTransactionFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_balance"
+        android:fontFamily="@font/main_font_bold"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/txtTempTransactionFragment"
+        app:layout_constraintStart_toStartOf="@+id/txtTempTransactionFragment"
+        app:layout_constraintTop_toBottomOf="@+id/txtTempTransactionFragment" />
+
+    <ImageButton
+        android:id="@+id/btnCalendarTransactionFragment"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="12dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_search"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/calendar"
+        android:background="@drawable/radius_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutTransactionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:tabTextAppearance="@style/CustomTabLayoutSelectGroupActivity"
+        android:contentDescription="@string/select_group"
+        app:tabTextColor="@color/brown"
+        app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/main_color"
+        app:tabRippleColor="@color/grey"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBalanceTransactionFragment" />
+
+    <View
+        android:id="@+id/viewTransactionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/tabLayoutTransactionFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerTransactionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewTransactionFragment" />
+</androidx.constraintlayout.widget.ConstraintLayout>

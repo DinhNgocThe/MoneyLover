@@ -19,7 +19,9 @@ import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.ActivityEditBalanceBinding
 import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -64,7 +66,9 @@ class EditBalanceActivity : AppCompatActivity() {
 
     private fun initControls() {
         lifecycleScope.launch {
-            wallet = walletViewModel.getWalletFromRoomByUid(firebaseAuth.currentUser?.uid.toString())!!
+            withContext(Dispatchers.IO) {
+                wallet = walletViewModel.getWalletFromRoomByUid(firebaseAuth.currentUser?.uid.toString())!!
+            }
             originalBalance = wallet.balance
             originalLimitAmount = wallet.limitAmount
             // Load wallet information

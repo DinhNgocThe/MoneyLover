@@ -13,4 +13,9 @@
         android:id="@+id/navProfile"
         android:name="com.example.moneylover.ui.ProfileFragment"
         android:label="Profile" />
+
+    <fragment
+        android:id="@+id/navTransaction"
+        android:name="com.example.moneylover.ui.TransactionFragment"
+        android:label="Transaction" />
 </navigation>

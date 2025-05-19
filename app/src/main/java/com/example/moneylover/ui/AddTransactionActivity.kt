@@ -17,12 +17,17 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.moneylover.R
 import com.example.moneylover.data.firebasemodel.TransactionFirebase
+import com.example.moneylover.data.firebasemodel.WalletFirebase
 import com.example.moneylover.data.room.model.ExpenseCategory
+import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.ActivityAddTransactionBinding
 import com.example.moneylover.viewmodel.TransactionViewModel
+import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
@@ -46,6 +51,13 @@ class AddTransactionActivity : AppCompatActivity() {
             this,
             TransactionViewModel.TransactionViewModelFactory(this.applicationContext as Application)
         )[TransactionViewModel::class.java]
+    }
+
+    private val walletViewModel: WalletViewModel by lazy {
+        ViewModelProvider(
+            this,
+            WalletViewModel.WalletViewModelFactory(this.applicationContext as Application)
+        )[WalletViewModel::class.java]
     }
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -135,7 +147,6 @@ class AddTransactionActivity : AppCompatActivity() {
         binding.cardViewDateAddTransactionActivity.setOnClickListener {
             datePicker.show(supportFragmentManager, "DATE_PICKER_ADD_TRANSACTION")
         }
-
         // Event date picker
         datePickerOnPositiveButtonClick()
     }
@@ -169,7 +180,7 @@ class AddTransactionActivity : AppCompatActivity() {
             binding.btnAddAddTransactionActivity.isEnabled = false
             lifecycleScope.launch {
                 try {
-                    val amount = binding.edtAmountAddTransactionActivity.text.toString().replace(".", "").toDouble()
+                    var amount = binding.edtAmountAddTransactionActivity.text.toString().replace(".", "").toDouble()
                     val description = binding.edtNoteAddTransactionActivity.text.toString()
                     val transactionFirebase = TransactionFirebase(
                         uid = firebaseAuth.currentUser?.uid ?: "",
@@ -178,7 +189,28 @@ class AddTransactionActivity : AppCompatActivity() {
                         date = dateFirebase,
                         type = category.id
                     )
-                    transactionViewModel.insertTransaction(transactionFirebase)
+                    if (category.type == "expense") amount = -amount
+                    // Insert transaction and update wallet
+                    withContext(Dispatchers.IO) {
+                        val wallet = walletViewModel.getWalletFromRoomByUid(firebaseAuth.currentUser?.uid ?: "")
+                        val newWallet = Wallet(
+                            wallet?.id ?: "",
+                            wallet?.uid ?: "",
+                            wallet?.balance?.plus(amount) ?: 0.0,
+                            wallet?.limitAmount ?: 0.0,
+                            wallet?.totalExpense ?: 0.0
+                        )
+                        val newWalletFirebase = WalletFirebase(
+                            newWallet.id,
+                            newWallet.uid,
+                            newWallet.balance,
+                            newWallet.limitAmount,
+                            newWallet.totalExpense
+                        )
+                        walletViewModel.updateWalletToRoom(newWallet)
+                        walletViewModel.updateWalletToFirestore(newWalletFirebase)
+                        transactionViewModel.insertTransaction(transactionFirebase)
+                    }
                     finish()
                 } catch (e: Exception) {
                     Log.e(tag, "Error adding transaction", e)

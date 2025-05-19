@@ -2,7 +2,6 @@ package com.example.moneylover.ui
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,34 +11,20 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.bumptech.glide.Glide
-import com.bumptech.glide.signature.ObjectKey
 import com.example.moneylover.R
-import com.example.moneylover.data.room.model.User
-import com.example.moneylover.data.room.model.Wallet
-import com.example.moneylover.databinding.FragmentHomeBinding
-import com.example.moneylover.viewmodel.UserViewModel
+import com.example.moneylover.adapter.TransactionViewPagerAdapter
+import com.example.moneylover.databinding.FragmentTransactionBinding
 import com.example.moneylover.viewmodel.WalletViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
 
-
-class HomeFragment : Fragment() {
-    private lateinit var user: User
-    private lateinit var binding: FragmentHomeBinding
+class TransactionFragment : Fragment() {
+    private lateinit var binding: FragmentTransactionBinding
     private val firebaseAuth = FirebaseAuth.getInstance()
-
-    private val userViewModel: UserViewModel by lazy {
-        ViewModelProvider(
-            this,
-            UserViewModel.UserViewModelFactory(requireContext().applicationContext as Application)
-        )[UserViewModel::class.java]
-    }
     private val walletViewModel: WalletViewModel by lazy {
         ViewModelProvider(
             this,
@@ -51,30 +36,25 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentTransactionBinding.inflate(layoutInflater)
+        // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadUserInformation()
+        initViewPager()
         loadWalletInformation()
-        editBalance()
     }
 
-    private fun loadUserInformation() {
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                user = userViewModel.getUserFromRoomByUid(firebaseAuth.currentUser?.uid.toString())!!
-            }
-            binding.txtDisplayNameHomeFragment.text = user.displayName
-            Glide.with(requireContext())
-                .load(user.photoUrl)
-                .signature(ObjectKey(user.photoUrl))
-                .placeholder(R.drawable.img_default_user_photo)
-                .error(R.drawable.img_default_user_photo)
-                .into(binding.imgPhotoHomeFragment)
-        }
+    private fun initViewPager() {
+        val adapter = TransactionViewPagerAdapter(this)
+        binding.viewPagerTransactionFragment.adapter = adapter
+
+        val tabTitles = listOf(getString(R.string.monthly), getString(R.string.daily))
+        TabLayoutMediator(binding.tabLayoutTransactionFragment, binding.viewPagerTransactionFragment) { tab, position ->
+            tab.text = tabTitles[position]
+        }.attach()
     }
 
     @SuppressLint("SetTextI18n")
@@ -84,17 +64,10 @@ class HomeFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 walletViewModel.wallet.collect { value ->
                     value?.let {
-                        binding.txtBalanceHomeFragment.text = formatCurrency(it.balance) + " " + getString(R.string.vnd)
+                        binding.txtBalanceTransactionFragment.text = formatCurrency(it.balance) + " " + getString(R.string.vnd)
                     }
                 }
             }
-        }
-    }
-
-    private fun editBalance() {
-        binding.btnEditBalanceHomeFragment.setOnClickListener {
-            val intent = Intent(this.requireContext(), EditBalanceActivity::class.java)
-            startActivity(intent)
         }
     }
 

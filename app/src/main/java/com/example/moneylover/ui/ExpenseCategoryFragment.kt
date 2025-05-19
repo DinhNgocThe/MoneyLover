@@ -41,7 +41,7 @@ class ExpenseCategoryFragment : Fragment() {
     }
 
     private fun loadExpenseCategories() {
-        adapter = CategoryAdapter(requireContext(), onCategoryClick, onCategoryLongClick)
+        adapter = CategoryAdapter(requireContext(), onCategoryClick)
         binding.rcvExpenseCategoryExpenseCategoryFragment.adapter = adapter
         binding.rcvExpenseCategoryExpenseCategoryFragment.layoutManager = LinearLayoutManager(requireContext())
         binding.rcvExpenseCategoryExpenseCategoryFragment.setHasFixedSize(true)
@@ -56,10 +56,6 @@ class ExpenseCategoryFragment : Fragment() {
         }
         requireActivity().setResult(Activity.RESULT_OK, resultIntent)
         requireActivity().finish()
-    }
-
-    private val onCategoryLongClick: (ExpenseCategory) -> Unit = {
-        Toast.makeText(requireContext(), it.name, Toast.LENGTH_SHORT).show()
     }
 
     private fun addCategory() {

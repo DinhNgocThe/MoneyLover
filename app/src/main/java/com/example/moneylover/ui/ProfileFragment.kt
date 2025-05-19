@@ -13,11 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.example.moneylover.data.firebasemodel.GoogleAuthClient
+import com.example.moneylover.data.room.model.User
 import com.example.moneylover.databinding.FragmentProfileBinding
 import com.example.moneylover.viewmodel.UserViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -75,12 +78,15 @@ class ProfileFragment : Fragment() {
     private fun loadUserInformation() {
         //Load User information
         lifecycleScope.launch {
-            val user = userViewModel.getUserFromRoomByUid(firebaseAuth.currentUser?.uid.toString()) // Get user from room
-            binding.txtDisplayNameProfileFragment.text = user?.displayName // Set display name
-            binding.txtEmailProfileFragment.text = user?.email // Set email
+            val user: User
+            withContext(Dispatchers.IO) {
+                user = userViewModel.getUserFromRoomByUid(firebaseAuth.currentUser?.uid.toString())!! // Get user from room
+            }
+            binding.txtDisplayNameProfileFragment.text = user.displayName // Set display name
+            binding.txtEmailProfileFragment.text = user.email // Set email
             Glide.with(requireContext()) // Load photoUrl
-                .load(user?.photoUrl)
-                .signature(ObjectKey(user?.photoUrl ?: ""))
+                .load(user.photoUrl)
+                .signature(ObjectKey(user.photoUrl))
                 .placeholder(R.drawable.img_default_user_photo)
                 .error(R.drawable.img_default_user_photo)
                 .into(binding.imgPhotoProfileFragment)

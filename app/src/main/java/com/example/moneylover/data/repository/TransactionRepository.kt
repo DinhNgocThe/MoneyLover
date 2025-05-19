@@ -5,16 +5,22 @@ import android.util.Log
 import com.example.moneylover.data.firebasemodel.TransactionFirebase
 import com.example.moneylover.data.room.LocalDatabase
 import com.example.moneylover.data.room.model.Transaction
+import com.example.moneylover.data.room.model.TransactionWithCategory
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.tasks.await
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
+import java.time.temporal.TemporalAdjusters
 
 class TransactionRepository(context: Application) {
     private val tag = "TransactionRepository"
     private val firestore = FirebaseFirestore.getInstance()
-    private val localDatabase = LocalDatabase.getInstance(context)
-    private val transactionDao = localDatabase.transactionDao()
+    private val transactionDao = LocalDatabase.getInstance(context).transactionDao()
 
-    suspend fun insertTransactionToFirestore(transaction: TransactionFirebase) : String? {
+    suspend fun insertTransactionToFirestore(transaction: TransactionFirebase): String? {
         return try {
             val documentRef = firestore.collection("transactions").add(transaction).await()
             documentRef.update("id", documentRef.id).await()
@@ -31,6 +37,59 @@ class TransactionRepository(context: Application) {
             transactionDao.insertTransaction(transaction)
         } catch (e: Exception) {
             Log.e(tag, "Error inserting transaction to room: ${e.message}", e)
+        }
+    }
+
+    suspend fun getTransactionsFromFirestoreByUid(uid: String): List<TransactionFirebase> {
+        return try {
+            val (startTime, endTime) = get12MonthRangeUtc()
+
+            val snapshot = firestore.collection("transactions")
+                .whereEqualTo("uid", uid)
+                .whereGreaterThanOrEqualTo("date", startTime)
+                .whereLessThanOrEqualTo("date", endTime)
+                .get()
+                .await()
+
+            snapshot.toObjects(TransactionFirebase::class.java)
+        } catch (e: Exception) {
+            Log.e(tag, "Error fetching transactions: ${e.message}", e)
+            emptyList()
+        }
+    }
+
+    private fun get12MonthRangeUtc(): Pair<Long, Long> {
+        val now = ZonedDateTime.now(ZoneOffset.UTC)
+
+        val start = now
+            .withDayOfMonth(1)
+            .minusMonths(11)
+            .toInstant()
+            .toEpochMilli()
+
+        val end = now
+            .with(TemporalAdjusters.lastDayOfMonth())
+            .with(LocalDateTime.MAX.toLocalTime())
+            .toInstant()
+            .toEpochMilli()
+
+        return Pair(start, end)
+    }
+
+    suspend fun insertTransactionsToRoom(transactions: List<Transaction>) {
+        try {
+            transactionDao.insertTransactions(transactions)
+        } catch (e: Exception) {
+            Log.e(tag, "Error saving transactions to room: ${e.message}", e)
+        }
+    }
+
+    fun getTransactionsFromRoomByUidAndTime(uid: String, start: Long, end: Long) : Flow<List<TransactionWithCategory>> {
+        return try {
+            transactionDao.getTransactionsWithCategoryByUidAndTime(uid, start, end)
+        } catch (e: Exception) {
+            Log.e(tag, "Error getting transactions from room: ${e.message}", e)
+            return emptyFlow()
         }
     }
 }

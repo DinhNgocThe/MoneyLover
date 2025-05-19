@@ -1,6 +1,5 @@
 package com.example.moneylover.ui
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -14,7 +13,9 @@ import com.example.moneylover.data.firebasemodel.ExpenseCategoryFirebase
 import com.example.moneylover.databinding.ActivityAddCategoryBinding
 import com.example.moneylover.viewmodel.ExpenseCategoryViewModel
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AddCategoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddCategoryBinding
@@ -23,7 +24,7 @@ class AddCategoryActivity : AppCompatActivity() {
     private val expenseCategoryViewModel: ExpenseCategoryViewModel by lazy {
         ViewModelProvider(
             this,
-            ExpenseCategoryViewModel.ExpenseCategoryViewModelFactory(this.applicationContext as Application)
+            ExpenseCategoryViewModel.ExpenseCategoryViewModelFactory(this.application)
         )[ExpenseCategoryViewModel::class.java]
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +61,9 @@ class AddCategoryActivity : AppCompatActivity() {
                         iconUrl = "https://i.ibb.co/QFjCCJHH/ic-other.png",
                         type = type
                     )
-                    expenseCategoryViewModel.insertExpenseCategory(category)
+                    withContext(Dispatchers.IO) {
+                        expenseCategoryViewModel.insertExpenseCategory(category)
+                    }
                     finish()
                 } catch (e: Exception) {
                     Log.e(tag, "Error adding category", e)

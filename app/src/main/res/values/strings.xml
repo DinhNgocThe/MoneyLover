@@ -73,4 +73,10 @@
     <string name="category_type">Category type</string>
     <string name="amount_warning">Please enter amount!</string>
     <string name="category_type_warning">Please select category type!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="this_month">This month</string>
+    <string name="daily">Daily</string>
+    <string name="monthly">Monthly</string>
+    <string name="state_transaction">You have no transactions during this time!</string>
 </resources>

@@ -1,7 +1,5 @@
 package com.example.moneylover.data.firebasemodel
 
-import com.google.firebase.Timestamp
-
 data class TransactionFirebase(
     val id: String? = null,
     val uid: String = "",

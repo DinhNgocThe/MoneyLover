@@ -72,4 +72,8 @@
     <string name="category_type">Loại nhóm</string>
     <string name="amount_warning">Vui lòng điền số tiền!</string>
     <string name="category_type_warning">Vui lòng chọn nhóm giao dịch!</string>
+    <string name="this_month">Tháng này</string>
+    <string name="daily">Theo ngày</string>
+    <string name="monthly">Theo tháng</string>
+    <string name="state_transaction">Bạn không có giao dịch nào trong thời gian này!</string>
 </resources>

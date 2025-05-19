@@ -40,7 +40,7 @@ class IncomeCategoryFragment : Fragment() {
     }
 
     private fun loadExpenseCategories() {
-        adapter = CategoryAdapter(requireContext(), onCategoryClick, {})
+        adapter = CategoryAdapter(requireContext(), onCategoryClick)
         binding.rcvIncomeCategoryIncomeCategoryFragment.adapter = adapter
         binding.rcvIncomeCategoryIncomeCategoryFragment.layoutManager = LinearLayoutManager(requireContext())
         binding.rcvIncomeCategoryIncomeCategoryFragment.setHasFixedSize(true)

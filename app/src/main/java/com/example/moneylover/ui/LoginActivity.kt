@@ -17,11 +17,14 @@ import com.example.moneylover.data.room.model.User
 import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.ActivityLoginBinding
 import com.example.moneylover.viewmodel.ExpenseCategoryViewModel
+import com.example.moneylover.viewmodel.TransactionViewModel
 import com.example.moneylover.viewmodel.UserViewModel
 import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -45,7 +48,12 @@ class LoginActivity : AppCompatActivity() {
             ExpenseCategoryViewModel.ExpenseCategoryViewModelFactory(this.application)
         )[ExpenseCategoryViewModel::class.java]
     }
-
+    private val transactionViewModel: TransactionViewModel by lazy {
+        ViewModelProvider(
+            this,
+            TransactionViewModel.TransactionViewModelFactory(this.application)
+        )[TransactionViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,9 +100,12 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val isSuccess = googleAuthClient.signIn()
                 if (isSuccess) { // If success save user information to database and init wallet
-                    saveUserToDb()
-                    saveWalletToDb()
-                    saveExpenseCategoriesToDb()
+                    withContext(Dispatchers.IO) {
+                        saveUserToDb()
+                        saveWalletToDb()
+                        saveExpenseCategoriesToDb()
+                        saveTransactionsToDb()
+                    }
                     //Go to MainActivity
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
@@ -156,5 +167,9 @@ class LoginActivity : AppCompatActivity() {
     private fun saveExpenseCategoriesToDb() {
         expenseCategoryViewModel.getDefaultExpenseCategoriesFromFirestoreAndSaveToRoom()
         expenseCategoryViewModel.getExpenseCategoriesFromFirestoreByUidAndSaveToRoom(firebaseAuth.currentUser?.uid ?: "")
+    }
+
+    private fun saveTransactionsToDb() {
+        transactionViewModel.getTransactionsFromFirestoreByUidAndSaveToRoom(firebaseAuth.currentUser?.uid ?: "")
     }
 }

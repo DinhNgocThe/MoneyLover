@@ -16,8 +16,7 @@ import com.example.moneylover.data.room.model.ExpenseCategory
 
 class CategoryAdapter(
     private val context: Context,
-    private val onClick: (ExpenseCategory) -> Unit,
-    private val onLongClick: (ExpenseCategory) -> Unit // To update name of category
+    private val onClick: (ExpenseCategory) -> Unit
 ) : ListAdapter<ExpenseCategory, CategoryAdapter.CategoryViewHolder>(DiffCallback()) {
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -35,11 +34,6 @@ class CategoryAdapter(
 
             layoutItem.setOnClickListener {
                 onClick(category)
-            }
-
-            layoutItem.setOnLongClickListener {
-                onLongClick(category)
-                true
             }
         }
     }

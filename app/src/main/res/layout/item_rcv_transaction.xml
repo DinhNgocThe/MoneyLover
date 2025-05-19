@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemRcvTransaction"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/white"
+    app:strokeWidth="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/imgCategoryItemRcvTransaction"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/category_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_other" />
+
+        <TextView
+            android:id="@+id/txtCategoryNameItemRcvTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:fontFamily="@font/main_font"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="@string/category_name"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCategoryItemRcvTransaction"
+            app:layout_constraintStart_toEndOf="@+id/imgCategoryItemRcvTransaction"
+            app:layout_constraintTop_toTopOf="@+id/imgCategoryItemRcvTransaction" />
+
+        <TextView
+            android:id="@+id/txtDateItemRcvTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:text="@string/default_date"
+            android:fontFamily="@font/main_font"
+            android:textSize="16sp"
+            android:textColor="@color/orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCategoryItemRcvTransaction" />
+
+        <TextView
+            android:id="@+id/txtAmountItemRcvTransaction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/main_font_bold"
+            android:textSize="20sp"
+            android:textColor="@color/main_color"
+            android:text="@string/default_balance"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
