@@ -79,4 +79,13 @@
     <string name="daily">Daily</string>
     <string name="monthly">Monthly</string>
     <string name="state_transaction">You have no transactions during this time!</string>
+    <string name="transaction_details">Transaction details</string>
+    <string name="title">Title</string>
+    <string name="message">Message</string>
+    <string name="ok">Ok</string>
+    <string name="back">Back</string>
+    <string name="agree">Agree</string>
+    <string name="error">Error!</string>
+    <string name="login_error">Error occurred while logging in!</string>
+    <string name="confirm">Confirm</string>
 </resources>

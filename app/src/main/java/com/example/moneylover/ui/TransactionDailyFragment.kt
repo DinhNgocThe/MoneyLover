@@ -1,6 +1,7 @@
 package com.example.moneylover.ui
 
 import android.app.Application
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneylover.adapter.TransactionAdapter
+import com.example.moneylover.data.room.model.TransactionWithCategory
 import com.example.moneylover.databinding.FragmentTransactionDailyBinding
 import com.example.moneylover.viewmodel.TransactionViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -52,7 +54,7 @@ class TransactionDailyFragment : Fragment() {
     }
 
     private fun loadTransactions() {
-        adapter = TransactionAdapter(requireContext(), {})
+        adapter = TransactionAdapter(requireContext(), onClick)
         binding.rcvTransactionDailyFragment.adapter = adapter
         binding.rcvTransactionDailyFragment.layoutManager = LinearLayoutManager(requireContext())
         binding.rcvTransactionDailyFragment.setHasFixedSize(true)
@@ -72,6 +74,12 @@ class TransactionDailyFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private val onClick: (TransactionWithCategory) -> Unit = {
+        val intent = Intent(this.requireContext(), TransactionDetailsActivity::class.java)
+        intent.putExtra("EXTRA TransactionWithCategory", it)
+        startActivity(intent)
     }
 
     fun getStartAndEndOfDay(dateInMillis: Long): Pair<Long, Long> {

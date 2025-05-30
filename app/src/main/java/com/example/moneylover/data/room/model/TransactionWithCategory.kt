@@ -1,5 +1,7 @@
 package com.example.moneylover.data.room.model
 
+import java.io.Serializable
+
 data class TransactionWithCategory(
     val id: String,
     val uid: String,
@@ -9,4 +11,4 @@ data class TransactionWithCategory(
     val type: String,
     val iconUrl: String,
     val name: String
-)
+) : Serializable

@@ -2,6 +2,7 @@ package com.example.moneylover.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,6 +24,7 @@ import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -98,22 +100,41 @@ class LoginActivity : AppCompatActivity() {
         // Login with Google
         binding.btnLoginWithGoogleLoginActivity.setOnClickListener {
             lifecycleScope.launch {
-                val isSuccess = googleAuthClient.signIn()
-                if (isSuccess) { // If success save user information to database and init wallet
+                binding.loadingOverlayLoginActivity.visibility = View.VISIBLE
+                delay(1500)
+                val isSuccess = googleAuthClient.signIn(
+                    onUiShown = { binding.loadingOverlayLoginActivity.visibility = View.GONE }
+                )
+
+                if (isSuccess) {
+                    binding.loadingOverlayLoginActivity.visibility = View.VISIBLE
                     withContext(Dispatchers.IO) {
                         saveUserToDb()
                         saveWalletToDb()
                         saveExpenseCategoriesToDb()
                         saveTransactionsToDb()
                     }
-                    //Go to MainActivity
+
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
+                    binding.loadingOverlayLoginActivity.visibility = View.GONE
                     finish()
+                } else {
+                    binding.loadingOverlayLoginActivity.visibility = View.GONE
+                    val dialog = CustomAlertDialog(this@LoginActivity);
+
+                    dialog.setTitle(getString(R.string.error))
+                        .setMessage(getString(R.string.login_error))
+                        .hideDegreeButton()
+                        .setOnAgreeClickListener {
+                            dialog.dismiss()
+                        }
+                        .show()
                 }
             }
         }
     }
+
 
     private fun saveUserToDb() {
         //Save user to room and firestore

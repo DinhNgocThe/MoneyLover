@@ -50,19 +50,13 @@ class ProfileFragment : Fragment() {
     private fun logOut() {
         googleAuthClient = GoogleAuthClient(requireContext())
         binding.btnLogOutProfileFragment.setOnClickListener {
-            showLogoutConfirmationDialog() // Show dialog to confirm logout
+            val dialog = CustomAlertDialog(requireContext())
+            dialog.setTitle(getString(R.string.log_out))
+                .setMessage(getString(R.string.confirm_logout))
+                .setOnAgreeClickListener { performLogout() }
+                .setOnDegreeClickListener { dialog.dismiss() }
+                .show()
         }
-    }
-
-    private fun showLogoutConfirmationDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.log_out)
-            .setMessage(R.string.confirm_logout)
-            .setPositiveButton(R.string.log_out) { _, _ -> // If select the log out button
-                performLogout()
-            }
-            .setNegativeButton(R.string.cancel, null)
-            .show()
     }
 
     private fun performLogout() {

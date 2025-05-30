@@ -30,11 +30,11 @@ class GoogleAuthClient(
         return false
     }
 
-    suspend fun signIn(): Boolean {
+    suspend fun signIn(onUiShown: () -> Unit = {}): Boolean {
         if (isSignedIn()) return true
 
         try {
-            val result = buildCredentialRequest()
+            val result = buildCredentialRequest(onUiShown)
             return handleSignIn(result)
         } catch (e: Exception) {
             if (e is CancellationException) throw e
@@ -68,7 +68,7 @@ class GoogleAuthClient(
         }
     }
 
-    private suspend fun buildCredentialRequest(): GetCredentialResponse {
+    private suspend fun buildCredentialRequest(onUiShown: () -> Unit = {}): GetCredentialResponse {
         val request = GetCredentialRequest.Builder().addCredentialOption(
             GetGoogleIdOption
                 .Builder()
@@ -77,7 +77,7 @@ class GoogleAuthClient(
                 .setAutoSelectEnabled(false)
                 .build()
         ).build()
-
+        onUiShown()
         return credentialManager.getCredential(context = context, request = request)
     }
 

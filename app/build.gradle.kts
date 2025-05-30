@@ -87,4 +87,7 @@ dependencies {
     // Glide
     implementation(libs.glide)
     ksp(libs.ksp)
+
+    // Support animation
+    implementation(libs.lottie)
 }

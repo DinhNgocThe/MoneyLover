@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.TransactionDetailsActivity">
+
+    <TextView
+        android:id="@+id/txtTransactionDetailsActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/main_font_bold"
+        android:text="@string/transaction_details"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnBackTransactionDetailsActivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:contentDescription="@string/button_back"
+        android:padding="14dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow"
+        app:tint="@color/btn_image_ic" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTransactionDetailsActivity" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:background="@color/background">
+
+            <ImageView
+                android:id="@+id/imgCategoryTransactionDetailsActivity"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:contentDescription="@string/category_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_other" />
+
+            <TextView
+                android:id="@+id/txtCategoryNameInTransactionDetailsActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_name"
+                android:fontFamily="@font/main_font"
+                android:textSize="18sp"
+                android:layout_marginStart="7dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/imgCategoryTransactionDetailsActivity"
+                app:layout_constraintStart_toEndOf="@+id/imgCategoryTransactionDetailsActivity"
+                app:layout_constraintTop_toTopOf="@+id/imgCategoryTransactionDetailsActivity" />
+
+            <ImageView
+                android:id="@+id/imgCalendarTransactionDetailsActivity"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgCategoryTransactionDetailsActivity"
+                app:srcCompat="@drawable/ic_calendar" />
+
+            <TextView
+                android:id="@+id/txtDateTransactionDetailsActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_date"
+                android:fontFamily="@font/main_font"
+                android:textSize="18sp"
+                android:layout_marginStart="7dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/imgCalendarTransactionDetailsActivity"
+                app:layout_constraintStart_toEndOf="@+id/imgCalendarTransactionDetailsActivity"
+                app:layout_constraintTop_toTopOf="@+id/imgCalendarTransactionDetailsActivity" />
+
+            <TextView
+                android:id="@+id/txtAmountTransactionDetailsActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_balance"
+                android:fontFamily="@font/main_font_bold"
+                android:textSize="20sp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/main_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgCalendarTransactionDetailsActivity" />
+
+            <EditText
+                android:id="@+id/edtNoteTransactionDetailsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="note"
+                android:background="@drawable/edt_white"
+                android:fontFamily="@font/main_font"
+                android:hint="@string/note"
+                android:inputType="textMultiLine"
+                android:maxLength="100"
+                android:minHeight="55dp"
+                android:minLines="2"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtAmountTransactionDetailsActivity" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

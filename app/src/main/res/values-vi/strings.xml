@@ -76,4 +76,13 @@
     <string name="daily">Theo ngày</string>
     <string name="monthly">Theo tháng</string>
     <string name="state_transaction">Bạn không có giao dịch nào trong thời gian này!</string>
+    <string name="transaction_details">Chi tiết giao dịch</string>
+    <string name="title">Tiêu đề</string>
+    <string name="message">Tin nhắn</string>
+    <string name="ok">Đồng ý</string>
+    <string name="back">Thoát</string>
+    <string name="agree">Đồng ý</string>
+    <string name="error">Có lỗi!</string>
+    <string name="login_error">Xảy ra lỗi khi đăng nhập!</string>
+    <string name="confirm">Xác nhận</string>
 </resources>
