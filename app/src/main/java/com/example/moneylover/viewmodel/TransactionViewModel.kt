@@ -8,17 +8,25 @@ import com.example.moneylover.data.firebasemodel.TransactionFirebase
 import com.example.moneylover.data.repository.TransactionRepository
 import com.example.moneylover.data.room.model.Transaction
 import com.example.moneylover.data.room.model.TransactionWithCategory
+import com.example.moneylover.data.room.model.Wallet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TransactionViewModel(private val context: Application) : ViewModel() {
     private val transactionRepository = TransactionRepository(context)
     private val _transactions = MutableStateFlow<List<TransactionWithCategory>>(emptyList())
     val transactions: StateFlow<List<TransactionWithCategory>> = _transactions
     private var roomCollectJob: Job? = null
+    private val _thisMonthExpenses = MutableStateFlow<Float?>(null)
+    val thisMonthExpenses: StateFlow<Float?> = _thisMonthExpenses
+
+    private val _lastMonthExpenses = MutableStateFlow<Float?>(null)
+    val lastMonthExpenses: StateFlow<Float?> = _lastMonthExpenses
 
     suspend fun insertTransaction(transactionFirebase: TransactionFirebase) {
         val id = transactionRepository.insertTransactionToFirestore(transactionFirebase)
@@ -62,6 +70,15 @@ class TransactionViewModel(private val context: Application) : ViewModel() {
                 .collect { list ->
                     _transactions.value = list
                 }
+        }
+    }
+
+    fun getMonthlyExpenses(start: Long, end: Long, isThisMonth: Boolean) {
+        viewModelScope.launch {
+            transactionRepository.getTotalMonthlyExpenses(start, end).collect { value ->
+                if (isThisMonth) _thisMonthExpenses.value = value
+                else _lastMonthExpenses.value = value
+            }
         }
     }
 

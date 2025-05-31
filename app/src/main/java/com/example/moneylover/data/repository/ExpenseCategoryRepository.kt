@@ -73,6 +73,15 @@ class ExpenseCategoryRepository(context: Application) {
         }
     }
 
+    suspend fun getCategoryIconsFromRoom() : List<String> {
+        return try {
+            expenseCategoryDao.getCategoryIcons()
+        } catch (e: Exception) {
+            Log.e(tag, "Error getting category icon from room: ${e.message}", e)
+            emptyList<String>()
+        }
+    }
+
     fun getExpenseCategoriesFromRoom(): LiveData<List<ExpenseCategory>> {
         return expenseCategoryDao.getExpenseCategories()
     }

@@ -88,4 +88,12 @@
     <string name="error">Error!</string>
     <string name="login_error">Error occurred while logging in!</string>
     <string name="confirm">Confirm</string>
+    <string name="this_month_report">This month\'s report</string>
+    <string name="total_expenses_this_month">Total expenses this month</string>
+    <string name="increase">Increase</string>
+    <string name="decrease">Decrease</string>
+    <string name="trend">Trend</string>
+    <string name="default_percent">36%</string>
+    <string name="last_month">Last month</string>
+    <string name="percent">%</string>
 </resources>

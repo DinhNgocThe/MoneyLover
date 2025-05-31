@@ -92,4 +92,13 @@ class TransactionRepository(context: Application) {
             return emptyFlow()
         }
     }
+
+    fun getTotalMonthlyExpenses(start: Long, end: Long): Flow<Float?> {
+        return try {
+            transactionDao.getTotalMonthlyExpenses(start, end)
+        } catch (e: Exception) {
+            Log.e(tag, "Error getting total monthly expenses: ${e.message}", e)
+            return emptyFlow()
+        }
+    }
 }

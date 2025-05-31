@@ -85,4 +85,12 @@
     <string name="error">Có lỗi!</string>
     <string name="login_error">Xảy ra lỗi khi đăng nhập!</string>
     <string name="confirm">Xác nhận</string>
+    <string name="this_month_report">Báo cáo tháng này</string>
+    <string name="total_expenses_this_month">Tổng chi tháng này</string>
+    <string name="increase">Tăng</string>
+    <string name="decrease">Giảm</string>
+    <string name="trend">Xu hướng</string>
+    <string name="default_percent">36%</string>
+    <string name="last_month">Tháng trước</string>
+    <string name="percent">%</string>
 </resources>

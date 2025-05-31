@@ -29,6 +29,7 @@ firebaseBom = "33.10.0"
 gmsGoogleServices = "4.4.2"
 navigationFragmentKtx = "2.9.0"
 navigationUiKtx = "2.9.0"
+williamchart = "3.10.1"
 
 [libraries]
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentialsPlayServicesAuth" }
@@ -41,6 +42,7 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+diogobernardino-williamchart = { module = "com.diogobernardino:williamchart", version.ref = "williamchart" }
 facebook-android-sdk = { module = "com.facebook.android:facebook-android-sdk", version.ref = "facebookAndroidSdk" }
 facebook-login = { module = "com.facebook.android:facebook-login", version.ref = "facebookLogin" }
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
@@ -66,6 +68,7 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+williamchart = { module = "com.diogobernardino.williamchart:williamchart", version.ref = "williamchart" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -90,4 +90,7 @@ dependencies {
 
     // Support animation
     implementation(libs.lottie)
+
+    // Chart
+    implementation(libs.diogobernardino.williamchart)
 }

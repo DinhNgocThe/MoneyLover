@@ -28,4 +28,12 @@ interface TransactionDao {
         start: Long,
         end: Long
     ): Flow<List<TransactionWithCategory>>
+
+    @Query("""
+    SELECT IFNULL(SUM(t.amount), 0) 
+    FROM tbl_transaction t
+    INNER JOIN tbl_expense_category c ON t.type= c.id
+    WHERE c.type = 'expense' AND t.date BETWEEN :start AND :end
+    """)
+    fun getTotalMonthlyExpenses(start: Long, end: Long): Flow<Float?>
 }

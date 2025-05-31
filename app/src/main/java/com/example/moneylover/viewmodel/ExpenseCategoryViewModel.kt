@@ -52,6 +52,10 @@ class ExpenseCategoryViewModel(private val context: Application) : ViewModel() {
         }
     }
 
+    suspend fun getCategoryIcons() : List<String> {
+        return expenseCategoryRepository.getCategoryIconsFromRoom()
+    }
+
     private fun ExpenseCategoryFirebase.toExpenseCategory(): ExpenseCategory {
         return ExpenseCategory(
             id = id ?: "",

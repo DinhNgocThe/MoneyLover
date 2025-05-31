@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -16,18 +17,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.example.moneylover.R
 import com.example.moneylover.data.room.model.User
-import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.FragmentHomeBinding
+import com.example.moneylover.viewmodel.TransactionViewModel
 import com.example.moneylover.viewmodel.UserViewModel
 import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.util.Calendar
 import java.util.Locale
-
 
 class HomeFragment : Fragment() {
     private lateinit var user: User
@@ -46,11 +48,17 @@ class HomeFragment : Fragment() {
             WalletViewModel.WalletViewModelFactory(requireContext().applicationContext as Application)
         )[WalletViewModel::class.java]
     }
+    private val transactionViewModel: TransactionViewModel by lazy {
+        ViewModelProvider(
+            this,
+            TransactionViewModel.TransactionViewModelFactory(requireContext().applicationContext as Application)
+        )[TransactionViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -60,6 +68,7 @@ class HomeFragment : Fragment() {
         loadUserInformation()
         loadWalletInformation()
         editBalance()
+        initBarChart()
     }
 
     private fun loadUserInformation() {
@@ -102,4 +111,71 @@ class HomeFragment : Fragment() {
         val symbols = DecimalFormatSymbols(Locale("vi", "VN"))
         return DecimalFormat("#,###", symbols).format(value)
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun initBarChart() {
+        val now = Calendar.getInstance()
+        val thisMonthStart = getStartOfMonthTimestamp(now)
+        val thisMonthEnd = getEndOfMonthTimestamp(now)
+        now.add(Calendar.MONTH, -1)
+        val lastMonthStart = getStartOfMonthTimestamp(now)
+        val lastMonthEnd = getEndOfMonthTimestamp(now)
+
+        var percent = 0
+        transactionViewModel.getMonthlyExpenses(lastMonthStart, lastMonthEnd, false)
+        transactionViewModel.getMonthlyExpenses(thisMonthStart, thisMonthEnd, true)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                combine(
+                    transactionViewModel.lastMonthExpenses,
+                    transactionViewModel.thisMonthExpenses
+                ) { lastMonth, thisMonth ->
+                    listOf(lastMonth ?: 0f, thisMonth ?: 0f)
+                }.collect { expenseList ->
+                    // expenseList[0] is lastMonth, [1] is thisMonth
+                    binding.txtAmountHomeFragment.text = formatCurrency(expenseList[1].toDouble()) + " " + getString(R.string.vnd)
+
+                    if (expenseList[0] > expenseList[1]) {
+                        percent = ((expenseList[0] - expenseList[1]) / expenseList[0] * 100).toInt()
+                        binding.imgPercentHomeFragment.setImageResource(R.drawable.ic_decrease)
+                        binding.txtPercentHomeFragment.setTextColor(ContextCompat.getColor(requireContext(), R.color.main_color))
+                        binding.txtPercentHomeFragment.text = percent.toString() + getString(R.string.percent)
+                    } else {
+                        percent = ((expenseList[1] - expenseList[0]) / expenseList[0] * 100).toInt()
+                        binding.imgPercentHomeFragment.setImageResource(R.drawable.ic_increase)
+                        binding.txtPercentHomeFragment.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                        binding.txtPercentHomeFragment.text = percent.toString() + getString(R.string.percent)
+                    }
+
+                    val data = listOf(
+                        getString(R.string.last_month) to expenseList[0],
+                        getString(R.string.this_month) to expenseList[1]
+                    )
+                    binding.barChartHomeFragment.animation.duration = 1000L
+                    binding.barChartHomeFragment.animate(data)
+                }
+            }
+        }
+    }
+
+     private fun getStartOfMonthTimestamp(calendar: Calendar): Long {
+        val cal = calendar.clone() as Calendar
+        cal.set(Calendar.DAY_OF_MONTH, 1)
+        cal.set(Calendar.HOUR_OF_DAY, 0)
+        cal.set(Calendar.MINUTE, 0)
+        cal.set(Calendar.SECOND, 0)
+        cal.set(Calendar.MILLISECOND, 0)
+        return cal.timeInMillis
+    }
+
+    private fun getEndOfMonthTimestamp(calendar: Calendar): Long {
+        val cal = calendar.clone() as Calendar
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH))
+        cal.set(Calendar.HOUR_OF_DAY, 23)
+        cal.set(Calendar.MINUTE, 59)
+        cal.set(Calendar.SECOND, 59)
+        cal.set(Calendar.MILLISECOND, 999)
+        return cal.timeInMillis
+    }
+
 }
