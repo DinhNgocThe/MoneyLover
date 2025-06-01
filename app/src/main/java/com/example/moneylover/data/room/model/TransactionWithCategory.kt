@@ -8,7 +8,8 @@ data class TransactionWithCategory(
     val amount: Double,
     val description: String,
     val date: Long,
-    val type: String,
+    val categoryType: String,
     val iconUrl: String,
-    val name: String
+    val name: String,
+    val transactionType: String
 ) : Serializable

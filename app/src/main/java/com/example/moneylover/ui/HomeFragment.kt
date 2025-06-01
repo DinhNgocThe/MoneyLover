@@ -13,9 +13,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.example.moneylover.R
+import com.example.moneylover.adapter.TopExpenseAdapter
 import com.example.moneylover.data.room.model.User
 import com.example.moneylover.databinding.FragmentHomeBinding
 import com.example.moneylover.viewmodel.TransactionViewModel
@@ -35,6 +38,7 @@ class HomeFragment : Fragment() {
     private lateinit var user: User
     private lateinit var binding: FragmentHomeBinding
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var topExpenseAdapter: TopExpenseAdapter
 
     private val userViewModel: UserViewModel by lazy {
         ViewModelProvider(
@@ -69,6 +73,7 @@ class HomeFragment : Fragment() {
         loadWalletInformation()
         editBalance()
         initBarChart()
+        initTopExpenseCategories()
     }
 
     private fun loadUserInformation() {
@@ -178,4 +183,27 @@ class HomeFragment : Fragment() {
         return cal.timeInMillis
     }
 
+    private fun initTopExpenseCategories() {
+        val now = Calendar.getInstance()
+        val thisMonthStart = getStartOfMonthTimestamp(now)
+        val thisMonthEnd = getEndOfMonthTimestamp(now)
+
+        transactionViewModel.getTopExpenseCategories(thisMonthStart, thisMonthEnd, firebaseAuth.currentUser?.uid.toString())
+
+        topExpenseAdapter = TopExpenseAdapter(requireContext())
+        binding.rcvTopExpenseCategoriesFragmentHome.isNestedScrollingEnabled = false
+        binding.rcvTopExpenseCategoriesFragmentHome.overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        binding.rcvTopExpenseCategoriesFragmentHome.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcvTopExpenseCategoriesFragmentHome.adapter = topExpenseAdapter
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                transactionViewModel.topExpenseCategories.collect { value ->
+                    value?.let {
+                        topExpenseAdapter.submitList(value)
+                    }
+                }
+            }
+        }
+    }
 }

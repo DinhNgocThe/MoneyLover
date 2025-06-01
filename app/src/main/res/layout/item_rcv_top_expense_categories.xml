@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp">
+
+    <ImageView
+        android:id="@+id/imgIconItemTopExpenseCategories"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/category_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_other" />
+
+    <TextView
+        android:id="@+id/txtCategoryNameItemTopExpenseCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/category_name"
+        android:fontFamily="@font/main_font_bold"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/imgIconItemTopExpenseCategories"
+        app:layout_constraintStart_toEndOf="@+id/imgIconItemTopExpenseCategories"
+        app:layout_constraintTop_toTopOf="@+id/imgIconItemTopExpenseCategories" />
+
+    <TextView
+        android:id="@+id/txtAmountItemTopExpenseCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_balance"
+        android:fontFamily="@font/main_font"
+        android:textColor="@color/main_color"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCategoryNameItemTopExpenseCategories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCategoryNameItemTopExpenseCategories" />
+</androidx.constraintlayout.widget.ConstraintLayout>

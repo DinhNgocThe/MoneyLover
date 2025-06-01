@@ -36,7 +36,7 @@
     <string name="my_balance">Tổng số dư</string>
     <string name="hidden_balance">Ẩn số dư</string>
     <string name="edit_balance">Chỉnh sửa số dư</string>
-    <string name="default_balance">5,200,000</string>
+    <string name="default_balance">5,200,000 VNĐ</string>
     <string name="balance_when_hidden">••• ••• •••</string>
     <string name="vnd">VND</string>
     <string name="confirm_logout">Bạn có chắc chắn muốn đăng xuất không?</string>
@@ -93,4 +93,8 @@
     <string name="default_percent">36%</string>
     <string name="last_month">Tháng trước</string>
     <string name="percent">%</string>
+    <string name="delete">Xóa</string>
+    <string name="confirm_delete_transaction">Bạn có chắc chắn muốn xóa giao dịch này không?</string>
+    <string name="top_expense_categories">Danh mục chi tiêu nhiều nhất</string>
+    <string name="total">"Tổng: "</string>
 </resources>

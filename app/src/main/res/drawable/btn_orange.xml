@@ -4,13 +4,13 @@
         <layer-list>
             <item>
                 <shape>
-                    <corners android:radius="10dp"/>
+                    <corners android:radius="13dp"/>
                 </shape>
             </item>
             <item android:top="7dp" android:bottom="7dp">
                 <shape>
                     <padding android:left="15dp" android:right="15dp" />
-                    <corners android:radius="10dp"/>
+                    <corners android:radius="13dp"/>
                     <solid android:color="@color/orange"/>
                 </shape>
             </item>

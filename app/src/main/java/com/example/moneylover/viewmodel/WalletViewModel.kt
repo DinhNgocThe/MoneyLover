@@ -49,13 +49,13 @@ class WalletViewModel(context: Application) : ViewModel() {
     }
 
     fun updateWalletToFirestore(walletFirebase: WalletFirebase) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             walletRepository.updateWalletToFirestore(walletFirebase)
         }
     }
 
     fun updateWalletToRoom(wallet: Wallet) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             walletRepository.updateWalletToRoom(wallet)
         }
     }

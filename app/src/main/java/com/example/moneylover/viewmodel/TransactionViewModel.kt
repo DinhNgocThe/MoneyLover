@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.moneylover.data.firebasemodel.TransactionFirebase
 import com.example.moneylover.data.repository.TransactionRepository
+import com.example.moneylover.data.room.model.ExpenseCategoryWithTotal
 import com.example.moneylover.data.room.model.Transaction
 import com.example.moneylover.data.room.model.TransactionWithCategory
 import com.example.moneylover.data.room.model.Wallet
@@ -22,11 +23,15 @@ class TransactionViewModel(private val context: Application) : ViewModel() {
     private val _transactions = MutableStateFlow<List<TransactionWithCategory>>(emptyList())
     val transactions: StateFlow<List<TransactionWithCategory>> = _transactions
     private var roomCollectJob: Job? = null
+
     private val _thisMonthExpenses = MutableStateFlow<Float?>(null)
     val thisMonthExpenses: StateFlow<Float?> = _thisMonthExpenses
 
     private val _lastMonthExpenses = MutableStateFlow<Float?>(null)
     val lastMonthExpenses: StateFlow<Float?> = _lastMonthExpenses
+
+    private val _topExpenseCategories = MutableStateFlow<List<ExpenseCategoryWithTotal>?>(null)
+    val topExpenseCategories: StateFlow<List<ExpenseCategoryWithTotal>?> = _topExpenseCategories
 
     suspend fun insertTransaction(transactionFirebase: TransactionFirebase) {
         val id = transactionRepository.insertTransactionToFirestore(transactionFirebase)
@@ -44,7 +49,7 @@ class TransactionViewModel(private val context: Application) : ViewModel() {
     }
 
     fun getTransactionsFromFirestoreByUidAndSaveToRoom(uid: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val transactionsFirebase = transactionRepository.getTransactionsFromFirestoreByUid(uid)
             val transactions = transactionsFirebase.map { it.toTransaction() }
             transactionRepository.insertTransactionsToRoom(transactions)
@@ -74,10 +79,26 @@ class TransactionViewModel(private val context: Application) : ViewModel() {
     }
 
     fun getMonthlyExpenses(start: Long, end: Long, isThisMonth: Boolean) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             transactionRepository.getTotalMonthlyExpenses(start, end).collect { value ->
                 if (isThisMonth) _thisMonthExpenses.value = value
                 else _lastMonthExpenses.value = value
+            }
+        }
+    }
+
+    fun deleteTransactionById(id: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                transactionRepository.deleteTransactionById(id)
+            }
+        }
+    }
+
+    fun getTopExpenseCategories(start: Long, end: Long, uid: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            transactionRepository.getTopExpenseCategories(start, end, uid).collect { value ->
+                _topExpenseCategories.value = value
             }
         }
     }

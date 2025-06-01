@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.example.moneylover.data.firebasemodel.TransactionFirebase
 import com.example.moneylover.data.room.LocalDatabase
+import com.example.moneylover.data.room.model.ExpenseCategoryWithTotal
 import com.example.moneylover.data.room.model.Transaction
 import com.example.moneylover.data.room.model.TransactionWithCategory
 import com.google.firebase.firestore.FirebaseFirestore
@@ -99,6 +100,24 @@ class TransactionRepository(context: Application) {
         } catch (e: Exception) {
             Log.e(tag, "Error getting total monthly expenses: ${e.message}", e)
             return emptyFlow()
+        }
+    }
+
+    suspend fun deleteTransactionById(id: String) {
+        try {
+            transactionDao.deleteTransactionById(id)
+            firestore.collection("transactions").document(id).delete().await()
+        } catch (e: Exception) {
+            Log.e(tag, "Error deleting transaction: ${e.message}", e)
+        }
+    }
+
+    fun getTopExpenseCategories(start: Long, end: Long, uid: String): Flow<List<ExpenseCategoryWithTotal>?> {
+        return try {
+            transactionDao.getTopExpenseCategories(start, end, uid)
+        } catch (e: Exception) {
+            Log.e(tag, "Error getting top expense categories: ${e.message}", e)
+            emptyFlow()
         }
     }
 }
