@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
         eventNavBar() //Event select item nav bar
         addTransaction() //Event select add transaction button
-        preloadImages() //
+        preloadImages()
     }
 
     private fun preloadImages() {

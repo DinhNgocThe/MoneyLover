@@ -127,7 +127,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
+                android:paddingBottom="30dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/main_font"
                     android:textColor="@color/main_color"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="15dp"
                     android:text="@string/this_month_report"
@@ -152,7 +152,7 @@
                     android:layout_marginTop="10sp"
                     android:textColor="@color/black"
                     android:layout_marginStart="15dp"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     app:layout_constraintTop_toBottomOf="@id/txtReportHomeFragment"
                     app:layout_constraintStart_toStartOf="parent"/>
 
@@ -163,7 +163,7 @@
                     android:text="@string/total_expenses_this_month"
                     android:layout_marginStart="15dp"
                     android:fontFamily="@font/main_font"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:textColor="@color/brown"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtAmountHomeFragment"/>
@@ -184,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:fontFamily="@font/main_font"
                     android:textColor="@color/red"
                     android:text="@string/default_percent"
@@ -196,7 +196,7 @@
                     android:id="@+id/barChartHomeFragment"
                     android:layout_width="250dp"
                     android:layout_height="200dp"
-                    android:layout_marginTop="20sp"
+                    android:layout_marginTop="30sp"
                     app:chart_axis="x"
                     app:chart_barsColor="@color/orange"
                     app:chart_barsRadius="7dp"
@@ -207,15 +207,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtConcludeHomeFragment" />
-
-                <View
-                    android:layout_width="290dp"
-                    android:layout_height="1dp"
-                    android:background="@color/light_orange"
-                    android:layout_marginBottom="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/barChartHomeFragment"
-                    app:layout_constraintStart_toStartOf="@id/barChartHomeFragment" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -256,8 +247,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtTopExpenseCategoriesFragmentHome" />

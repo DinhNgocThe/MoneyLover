@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imgIconItemTopExpenseCategories"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
         android:layout_marginTop="15dp"
         android:contentDescription="@string/category_icon"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +20,10 @@
         android:id="@+id/txtCategoryNameItemTopExpenseCategories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:text="@string/category_name"
         android:fontFamily="@font/main_font_bold"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imgIconItemTopExpenseCategories"
         app:layout_constraintStart_toEndOf="@+id/imgIconItemTopExpenseCategories"
@@ -36,7 +36,7 @@
         android:text="@string/default_balance"
         android:fontFamily="@font/main_font"
         android:textColor="@color/main_color"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtCategoryNameItemTopExpenseCategories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtCategoryNameItemTopExpenseCategories" />

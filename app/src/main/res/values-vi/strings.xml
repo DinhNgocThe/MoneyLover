@@ -97,4 +97,13 @@
     <string name="confirm_delete_transaction">Bạn có chắc chắn muốn xóa giao dịch này không?</string>
     <string name="top_expense_categories">Danh mục chi tiêu nhiều nhất</string>
     <string name="total">"Tổng: "</string>
+    <string name="ic_edit_profile">"icon sửa thông tin "</string>
+    <string name="edit_profile">Chỉnh sửa thông tin</string>
+    <string name="ic_go_to">Icon đi tới</string>
+    <string name="notify">Thông báo</string>
+    <string name="debt">Sổ nợ</string>
+    <string name="ic_trash">icon thùng rác</string>
+    <string name="clear_data">Xóa dữ liệu</string>
+    <string name="ic_coin">Icon đồng xu</string>
+    <string name="ic_bell">Icon chuông</string>
 </resources>

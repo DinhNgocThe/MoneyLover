@@ -61,7 +61,7 @@ interface TransactionDao {
         WHERE c.type = 'expense' AND t.uid = :uid AND t.date BETWEEN :start AND :end
         GROUP BY c.id, c.iconUrl, c.name
         ORDER BY totalAmount DESC
-        LIMIT 3
+        LIMIT 4
     """)
     fun getTopExpenseCategories(start: Long, end: Long, uid: String): Flow<List<ExpenseCategoryWithTotal>?>
 }

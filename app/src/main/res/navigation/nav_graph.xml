@@ -18,4 +18,9 @@
         android:id="@+id/navTransaction"
         android:name="com.example.moneylover.ui.TransactionFragment"
         android:label="Transaction" />
+
+    <fragment
+        android:id="@+id/navBudget"
+        android:name="com.example.moneylover.ui.BudgetFragment"
+        android:label="Budget"/>
 </navigation>
