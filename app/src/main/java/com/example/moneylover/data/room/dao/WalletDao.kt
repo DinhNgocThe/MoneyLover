@@ -24,4 +24,8 @@ interface WalletDao {
     // Get wallet by uid, use for edit balance activity
     @Query("SELECT * FROM tbl_wallet WHERE uid = :userId LIMIT 1")
     suspend fun getWalletsByUid(userId: String): Wallet?
+
+    // Reset expense to 0
+    @Query("UPDATE tbl_wallet SET totalExpense = 0 WHERE uid = :uid")
+    suspend fun resetExpenseByUid(uid: String)
 }

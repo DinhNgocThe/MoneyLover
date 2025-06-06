@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.transaction
 
 import android.os.Bundle
 import android.util.Log

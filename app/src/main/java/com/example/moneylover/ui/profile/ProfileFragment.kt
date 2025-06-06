@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.profile
 
 import com.example.moneylover.R
 import android.app.Application
@@ -15,8 +15,9 @@ import com.bumptech.glide.signature.ObjectKey
 import com.example.moneylover.data.firebasemodel.GoogleAuthClient
 import com.example.moneylover.data.room.model.User
 import com.example.moneylover.databinding.FragmentProfileBinding
+import com.example.moneylover.ui.LoginActivity
+import com.example.moneylover.ui.customview.CustomAlertDialog
 import com.example.moneylover.viewmodel.UserViewModel
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -45,6 +46,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         logOut() //Event log out
         loadUserInformation() //Load user information
+        clearData()
     }
 
     private fun logOut() {
@@ -84,6 +86,24 @@ class ProfileFragment : Fragment() {
                 .placeholder(R.drawable.img_default_user_photo)
                 .error(R.drawable.img_default_user_photo)
                 .into(binding.imgPhotoProfileFragment)
+        }
+    }
+
+    private fun clearData() {
+        binding.btnClearDataProfileFragment.setOnClickListener {
+            val dialog = CustomAlertDialog(requireContext())
+            dialog.setTitle(getString(R.string.confirm))
+                .setMessage(getString(R.string.confirm_clear_data))
+                .setOnDegreeClickListener { dialog.dismiss() }
+                .setOnAgreeClickListener {
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            userViewModel.clearFirestoreData(firebaseAuth.currentUser?.uid.toString())
+                        }
+                        performLogout()
+                    }
+                }
+                .show()
         }
     }
 }

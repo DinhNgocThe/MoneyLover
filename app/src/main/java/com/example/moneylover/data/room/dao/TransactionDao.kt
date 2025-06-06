@@ -47,6 +47,14 @@ interface TransactionDao {
     """)
     fun getTotalMonthlyExpenses(start: Long, end: Long): Flow<Float?>
 
+    @Query("""
+        SELECT IFNULL(SUM(t.amount), 0) 
+        FROM tbl_transaction t
+        INNER JOIN tbl_expense_category c ON t.type= c.id
+        WHERE c.type = 'expense' AND t.date BETWEEN :start AND :end
+    """)
+    suspend fun calculateTotalExpenses(start: Long, end: Long): Float?
+
     @Query("DELETE FROM tbl_transaction WHERE id = :id")
     suspend fun deleteTransactionById(id: String)
 

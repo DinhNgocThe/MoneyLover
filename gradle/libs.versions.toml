@@ -30,6 +30,7 @@ gmsGoogleServices = "4.4.2"
 navigationFragmentKtx = "2.9.0"
 navigationUiKtx = "2.9.0"
 williamchart = "3.10.1"
+workRuntimeKtx = "2.10.1"
 
 [libraries]
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentialsPlayServicesAuth" }
@@ -69,6 +70,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 williamchart = { module = "com.diogobernardino.williamchart:williamchart", version.ref = "williamchart" }
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntimeKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

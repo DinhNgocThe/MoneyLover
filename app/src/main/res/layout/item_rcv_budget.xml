@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imgCategoryItemRcvBudget"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:contentDescription="@string/category_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_other" />
+
+        <TextView
+            android:id="@+id/txtCategoryNameItemRcvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
+            android:fontFamily="@font/main_font_bold"
+            android:text="@string/category_name"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCategoryItemRcvBudget"
+            app:layout_constraintStart_toEndOf="@+id/imgCategoryItemRcvBudget"
+            app:layout_constraintTop_toTopOf="@+id/imgCategoryItemRcvBudget" />
+
+        <TextView
+            android:id="@+id/txtAmountYouCanSpendItemRcvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/main_font"
+            android:text="@string/amount_you_can_spend"
+            android:textColor="@color/brown"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCategoryItemRcvBudget" />
+
+        <TextView
+            android:id="@+id/txtRemainingAmountItemRcvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font_bold"
+            android:text="@string/default_balance"
+            android:textColor="@color/main_color"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtAmountYouCanSpendItemRcvBudget"
+            app:layout_constraintStart_toStartOf="@+id/txtAmountYouCanSpendItemRcvBudget"
+            app:layout_constraintTop_toBottomOf="@+id/txtAmountYouCanSpendItemRcvBudget" />
+
+        <View
+            android:id="@+id/viewItemRcvBudget"
+            android:layout_width="1dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/brown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtRemainingAmountItemRcvBudget" />
+
+        <TextView
+            android:id="@+id/txtTotalBudgetItemRcvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font"
+            android:text="@string/total_budget"
+            android:textColor="@color/brown"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtTotalItemRcvBudget"
+            app:layout_constraintStart_toStartOf="@+id/txtTotalItemRcvBudget"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalItemRcvBudget" />
+
+        <TextView
+            android:id="@+id/txtTotalItemRcvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/main_font"
+            android:text="520,000"
+            android:textColor="@color/main_color"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/viewItemRcvBudget"
+            app:layout_constraintTop_toTopOf="@+id/viewItemRcvBudget" />
+
+        <TextView
+            android:id="@+id/txtSpentItemRcvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/main_font"
+            android:text="520,000"
+            android:textColor="@color/main_color"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/viewItemRcvBudget"
+            app:layout_constraintTop_toTopOf="@+id/viewItemRcvBudget" />
+
+        <TextView
+            android:id="@+id/txtSpentBudgetItemRcvBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font"
+            android:text="@string/total_spent"
+            android:textColor="@color/brown"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/txtSpentItemRcvBudget"
+            app:layout_constraintStart_toStartOf="@+id/txtSpentItemRcvBudget"
+            app:layout_constraintTop_toBottomOf="@+id/txtSpentItemRcvBudget" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:contentDescription="@string/delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_delete" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

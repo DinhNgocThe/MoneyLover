@@ -78,4 +78,29 @@ class WalletRepository(context: Application) {
             Log.e(tag, "Error updating wallet to room: ${e.message}", e)
         }
     }
+
+    suspend fun resetExpenseRoomByUid(uid: String) {
+        try {
+            walletDao.resetExpenseByUid(uid)
+        } catch (e: Exception) {
+            Log.e(tag, "Room: error resetting expense by uid: ${e.message}", e)
+        }
+    }
+
+    suspend fun resetExpenseFirestoreByUid(uid: String) {
+        try {
+            val querySnapshot = fireStore.collection("wallets")
+                .whereEqualTo("uid", uid)
+                .get()
+                .await()
+
+            for (document in querySnapshot.documents) {
+                document.reference.update("totalExpense", 0.0).await()
+            }
+
+        } catch (e: Exception) {
+            Log.e(tag, "Firestore: error resetting expense by uid: ${e.message}", e)
+        }
+    }
+
 }

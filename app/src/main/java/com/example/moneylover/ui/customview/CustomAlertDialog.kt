@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.customview
 
 import android.app.Dialog
 import android.content.Context
@@ -17,7 +17,7 @@ class CustomAlertDialog(
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(binding.root)
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
     }
 
     fun setTitle(title: String): CustomAlertDialog {

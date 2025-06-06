@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.transaction
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -35,7 +35,7 @@ class TransactionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTransactionBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         return binding.root

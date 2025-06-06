@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,19 +14,19 @@
         android:theme="@style/Theme.MoneyLover"
         tools:targetApi="31">
         <activity
-            android:name=".ui.TransactionDetailsActivity"
+            android:name=".ui.transaction.TransactionDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AddCategoryActivity"
+            android:name=".ui.transaction.AddCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SelectGroupActivity"
+            android:name=".ui.transaction.SelectGroupActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.AddTransactionActivity"
+            android:name=".ui.transaction.AddTransactionActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.EditBalanceActivity"
+            android:name=".ui.home.EditBalanceActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
@@ -39,6 +40,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".alert.OverspendingReceiver"/>
     </application>
-
 </manifest>

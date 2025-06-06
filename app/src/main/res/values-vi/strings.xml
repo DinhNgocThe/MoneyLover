@@ -106,4 +106,10 @@
     <string name="clear_data">Xóa dữ liệu</string>
     <string name="ic_coin">Icon đồng xu</string>
     <string name="ic_bell">Icon chuông</string>
+    <string name="confirm_clear_data">Bạn có chắc chắn muốn xóa sạch dữ liệu không?</string>
+    <string name="this_month_budget">Ngân sách tháng này</string>
+    <string name="new_budget">Thêm ngân sách</string>
+    <string name="amount_you_can_spend">Số tiền bạn có thể chi</string>
+    <string name="total_budget">Tổng ngân sách</string>
+    <string name="total_spent">Tổng đã chi</string>
 </resources>

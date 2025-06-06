@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.transaction
 
 import android.app.Application
 import android.content.Intent
@@ -189,7 +189,11 @@ class AddTransactionActivity : AppCompatActivity() {
                         date = dateFirebase,
                         type = category.id
                     )
-                    if (category.type == "expense") amount = -amount
+                    var expense = 0.0
+                    if (category.type == "expense") {
+                        amount = -amount
+                        expense = -amount
+                    }
                     // Insert transaction and update wallet
                     withContext(Dispatchers.IO) {
                         val wallet = walletViewModel.getWalletFromRoomByUid(firebaseAuth.currentUser?.uid ?: "")
@@ -198,7 +202,7 @@ class AddTransactionActivity : AppCompatActivity() {
                             wallet?.uid ?: "",
                             wallet?.balance?.plus(amount) ?: 0.0,
                             wallet?.limitAmount ?: 0.0,
-                            wallet?.totalExpense ?: 0.0
+                            wallet?.totalExpense?.plus(expense) ?: 0.0
                         )
                         val newWalletFirebase = WalletFirebase(
                             newWallet.id,

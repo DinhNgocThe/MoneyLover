@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.home
 
 import android.annotation.SuppressLint
 import android.app.Application
@@ -137,27 +137,37 @@ class HomeFragment : Fragment() {
                 ) { lastMonth, thisMonth ->
                     listOf(lastMonth ?: 0f, thisMonth ?: 0f)
                 }.collect { expenseList ->
-                    // expenseList[0] is lastMonth, [1] is thisMonth
-                    binding.txtAmountHomeFragment.text = formatCurrency(expenseList[1].toDouble()) + " " + getString(R.string.vnd)
-
-                    if (expenseList[0] > expenseList[1]) {
-                        percent = ((expenseList[0] - expenseList[1]) / expenseList[0] * 100).toInt()
-                        binding.imgPercentHomeFragment.setImageResource(R.drawable.ic_decrease)
-                        binding.txtPercentHomeFragment.setTextColor(ContextCompat.getColor(requireContext(), R.color.main_color))
-                        binding.txtPercentHomeFragment.text = percent.toString() + getString(R.string.percent)
+                    if (expenseList[0] == 0f && expenseList[1] == 0f) {
+                        binding.imgPercentHomeFragment.visibility = View.GONE
+                        binding.txtPercentHomeFragment.visibility = View.GONE
+                        binding.txtAmountHomeFragment.text = formatCurrency(0.0) + " " + getString(R.string.vnd)
                     } else {
-                        percent = ((expenseList[1] - expenseList[0]) / expenseList[0] * 100).toInt()
-                        binding.imgPercentHomeFragment.setImageResource(R.drawable.ic_increase)
-                        binding.txtPercentHomeFragment.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                        binding.txtPercentHomeFragment.text = percent.toString() + getString(R.string.percent)
-                    }
+                        binding.imgPercentHomeFragment.visibility = View.VISIBLE
+                        binding.txtPercentHomeFragment.visibility = View.VISIBLE
 
-                    val data = listOf(
-                        getString(R.string.last_month) to expenseList[0],
-                        getString(R.string.this_month) to expenseList[1]
-                    )
-                    binding.barChartHomeFragment.animation.duration = 1000L
-                    binding.barChartHomeFragment.animate(data)
+                        // expenseList[0] is lastMonth, [1] is thisMonth
+                        binding.txtAmountHomeFragment.text = formatCurrency(expenseList[1].toDouble()) + " " + getString(R.string.vnd)
+
+                        if (expenseList[0] > expenseList[1]) {
+                            percent = ((expenseList[0] - expenseList[1]) / expenseList[0] * 100).toInt()
+                            binding.imgPercentHomeFragment.setImageResource(R.drawable.ic_decrease)
+                            binding.txtPercentHomeFragment.setTextColor(ContextCompat.getColor(requireContext(), R.color.main_color))
+                            binding.txtPercentHomeFragment.text = percent.toString() + getString(R.string.percent)
+                        } else {
+                            percent = ((expenseList[1] - expenseList[0]) / expenseList[0] * 100).toInt()
+                            if (expenseList[0] == 0f) percent = 100
+                            binding.imgPercentHomeFragment.setImageResource(R.drawable.ic_increase)
+                            binding.txtPercentHomeFragment.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+                            binding.txtPercentHomeFragment.text = percent.toString() + getString(R.string.percent)
+                        }
+
+                        val data = listOf(
+                            getString(R.string.last_month) to expenseList[0],
+                            getString(R.string.this_month) to expenseList[1]
+                        )
+                        binding.barChartHomeFragment.animation.duration = 1000L
+                        binding.barChartHomeFragment.animate(data)
+                    }
                 }
             }
         }

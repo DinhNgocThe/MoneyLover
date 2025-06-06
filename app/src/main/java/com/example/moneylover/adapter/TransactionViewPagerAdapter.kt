@@ -2,8 +2,8 @@ package com.example.moneylover.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.moneylover.ui.TransactionDailyFragment
-import com.example.moneylover.ui.TransactionMonthlyFragment
+import com.example.moneylover.ui.transaction.TransactionDailyFragment
+import com.example.moneylover.ui.transaction.TransactionMonthlyFragment
 
 class TransactionViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment){
     override fun getItemCount(): Int = 2

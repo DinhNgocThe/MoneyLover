@@ -109,4 +109,10 @@
     <string name="clear_data">Clear data</string>
     <string name="ic_coin">Icon coin</string>
     <string name="ic_bell">Icon bell</string>
+    <string name="confirm_clear_data">Are you sure you want to erase the data?</string>
+    <string name="this_month_budget">This month\'s budget</string>
+    <string name="new_budget">New budget</string>
+    <string name="amount_you_can_spend">Amount you can spend</string>
+    <string name="total_budget">Total budget</string>
+    <string name="total_spent">Total spent</string>
 </resources>

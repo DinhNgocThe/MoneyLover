@@ -103,6 +103,15 @@ class TransactionRepository(context: Application) {
         }
     }
 
+    suspend fun calculateTotalExpenses(start: Long, end: Long): Float? {
+        return try {
+            transactionDao.calculateTotalExpenses(start, end)
+        } catch (e: Exception) {
+            Log.e(tag, "Error calculating total expenses: ${e.message}", e)
+            null
+        }
+    }
+
     suspend fun deleteTransactionById(id: String) {
         try {
             transactionDao.deleteTransactionById(id)

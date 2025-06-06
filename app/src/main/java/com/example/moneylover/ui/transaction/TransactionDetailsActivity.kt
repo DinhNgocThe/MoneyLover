@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.transaction
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -14,6 +14,7 @@ import com.example.moneylover.data.firebasemodel.WalletFirebase
 import com.example.moneylover.data.room.model.TransactionWithCategory
 import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.ActivityTransactionDetailsBinding
+import com.example.moneylover.ui.customview.CustomAlertDialog
 import com.example.moneylover.viewmodel.TransactionViewModel
 import com.example.moneylover.viewmodel.WalletViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -94,14 +95,18 @@ class TransactionDetailsActivity : AppCompatActivity() {
                     lifecycleScope.launch(Dispatchers.IO) {
                         transactionViewModel.deleteTransactionById(transaction.id)
                         val wallet = walletViewModel.getWalletFromRoomByUid(firebaseAuth.currentUser?.uid ?: "")
-                        var amount = 0.0
-                        amount = if (transaction.transactionType == "expense") transaction.amount else -transaction.amount
+                        var amount = -transaction.amount
+                        var expense = 0.0
+                       if (transaction.transactionType == "expense") {
+                           amount = transaction.amount
+                           expense = amount
+                       }
                         val newWallet = Wallet(
                             wallet?.id ?: "",
                             wallet?.uid ?: "",
                             wallet?.balance?.plus(amount) ?: 0.0,
                             wallet?.limitAmount ?: 0.0,
-                            wallet?.totalExpense ?: 0.0
+                            wallet?.totalExpense?.minus(expense) ?: 0.0
                         )
                         val walletFirebase = WalletFirebase(
                             newWallet.id,

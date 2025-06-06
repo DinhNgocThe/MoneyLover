@@ -3,8 +3,8 @@ package com.example.moneylover.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.moneylover.ui.ExpenseCategoryFragment
-import com.example.moneylover.ui.IncomeCategoryFragment
+import com.example.moneylover.ui.transaction.ExpenseCategoryFragment
+import com.example.moneylover.ui.transaction.IncomeCategoryFragment
 
 class CategoryViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 2

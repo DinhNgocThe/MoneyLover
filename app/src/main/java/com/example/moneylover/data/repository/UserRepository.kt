@@ -56,4 +56,46 @@ class UserRepository(context: Application) {
             localDatabase.clearAllTables()
         }
     }
+
+    suspend fun clearWalletDataByUid(uid: String) {
+        try {
+            val snapshot = fireStore.collection("wallets")
+                .whereEqualTo("uid", uid)
+                .get()
+                .await()
+            for (document in snapshot.documents) {
+                document.reference.delete().await()
+            }
+        } catch (e: Exception) {
+            Log.e(tag, "Error clearing wallet data by uid: ${e.message}")
+        }
+    }
+
+    suspend fun clearTransactionDataByUid(uid: String) {
+        try {
+            val snapshot = fireStore.collection("transactions")
+                .whereEqualTo("uid", uid)
+                .get()
+                .await()
+            for (document in snapshot.documents) {
+                document.reference.delete().await()
+            }
+        } catch (e: Exception) {
+            Log.e(tag, "Error clearing transaction data by uid: ${e.message}")
+        }
+    }
+
+    suspend fun clearExpenseCategoryDataByUid(uid: String) {
+        try {
+            val snapshot = fireStore.collection("expense_categories")
+                .whereEqualTo("uid", uid)
+                .get()
+                .await()
+            for (document in snapshot.documents) {
+                document.reference.delete().await()
+            }
+        } catch (e: Exception) {
+            Log.e(tag, "Error clearing expense category data by uid: ${e.message}")
+        }
+    }
 }

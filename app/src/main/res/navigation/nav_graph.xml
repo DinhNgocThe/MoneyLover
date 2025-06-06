@@ -6,21 +6,21 @@
 
     <fragment
         android:id="@+id/navHome"
-        android:name="com.example.moneylover.ui.HomeFragment"
+        android:name="com.example.moneylover.ui.home.HomeFragment"
         android:label="Home" />
 
     <fragment
         android:id="@+id/navProfile"
-        android:name="com.example.moneylover.ui.ProfileFragment"
+        android:name="com.example.moneylover.ui.profile.ProfileFragment"
         android:label="Profile" />
 
     <fragment
         android:id="@+id/navTransaction"
-        android:name="com.example.moneylover.ui.TransactionFragment"
+        android:name="com.example.moneylover.ui.transaction.TransactionFragment"
         android:label="Transaction" />
 
     <fragment
         android:id="@+id/navBudget"
-        android:name="com.example.moneylover.ui.BudgetFragment"
+        android:name="com.example.moneylover.ui.budget.BudgetFragment"
         android:label="Budget"/>
 </navigation>

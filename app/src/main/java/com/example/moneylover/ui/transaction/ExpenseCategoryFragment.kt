@@ -1,4 +1,4 @@
-package com.example.moneylover.ui
+package com.example.moneylover.ui.transaction
 
 import android.app.Activity
 import android.app.Application
@@ -12,11 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneylover.adapter.CategoryAdapter
 import com.example.moneylover.data.room.model.ExpenseCategory
-import com.example.moneylover.databinding.FragmentIncomeCategoryBinding
+import com.example.moneylover.databinding.FragmentExpenseCategoryBinding
 import com.example.moneylover.viewmodel.ExpenseCategoryViewModel
 
-class IncomeCategoryFragment : Fragment() {
-    private lateinit var binding: FragmentIncomeCategoryBinding
+class ExpenseCategoryFragment : Fragment() {
+    private lateinit var binding: FragmentExpenseCategoryBinding
     private lateinit var adapter: CategoryAdapter
     private val expenseCategoryViewModel: ExpenseCategoryViewModel by lazy {
         ViewModelProvider(
@@ -27,8 +27,8 @@ class IncomeCategoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentIncomeCategoryBinding.inflate(layoutInflater)
+    ): View {
+        binding = FragmentExpenseCategoryBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -41,10 +41,10 @@ class IncomeCategoryFragment : Fragment() {
 
     private fun loadExpenseCategories() {
         adapter = CategoryAdapter(requireContext(), onCategoryClick)
-        binding.rcvIncomeCategoryIncomeCategoryFragment.adapter = adapter
-        binding.rcvIncomeCategoryIncomeCategoryFragment.layoutManager = LinearLayoutManager(requireContext())
-        binding.rcvIncomeCategoryIncomeCategoryFragment.setHasFixedSize(true)
-        expenseCategoryViewModel.incomeCategories.observe(viewLifecycleOwner) {
+        binding.rcvExpenseCategoryExpenseCategoryFragment.adapter = adapter
+        binding.rcvExpenseCategoryExpenseCategoryFragment.layoutManager = LinearLayoutManager(requireContext())
+        binding.rcvExpenseCategoryExpenseCategoryFragment.setHasFixedSize(true)
+        expenseCategoryViewModel.expenseCategories.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
     }
@@ -58,7 +58,7 @@ class IncomeCategoryFragment : Fragment() {
     }
 
     private fun addCategory() {
-        binding.btnAddCategoryIncomeCategoryFragment.setOnClickListener {
+        binding.btnAddCategoryExpenseCategoryFragment.setOnClickListener {
             val intent = Intent(this.requireContext(), AddCategoryActivity::class.java)
             startActivity(intent)
         }

@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.moneylover.data.firebasemodel.UserFirebase
 import com.example.moneylover.data.repository.UserRepository
 import com.example.moneylover.data.room.model.User
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UserViewModel(context: Application) : ViewModel() {
     private val userRepository = UserRepository(context)
@@ -21,21 +23,27 @@ class UserViewModel(context: Application) : ViewModel() {
     }
 
     fun saveUserToRoom(user: User) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.saveUserToRoom(user)
         }
     }
 
     fun saveUserToFirestore(userFirebase: UserFirebase) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.saveUserToFirestore(userFirebase)
         }
     }
 
     fun clearAllTables() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             userRepository.clearAllTables()
         }
+    }
+
+    suspend fun clearFirestoreData(uid: String) {
+        userRepository.clearWalletDataByUid(uid)
+        userRepository.clearTransactionDataByUid(uid)
+        userRepository.clearExpenseCategoryDataByUid(uid)
     }
 
     class UserViewModelFactory(private val context: Application) : ViewModelProvider.Factory {
