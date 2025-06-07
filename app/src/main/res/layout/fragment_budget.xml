@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.budget.BudgetFragment">
 
     <TextView
         android:id="@+id/txtThisMonthBudgetBudgetFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
         android:text="@string/this_month_budget"
-        android:layout_marginTop="15dp"
+        android:gravity="center"
         android:textSize="22sp"
+        android:background="@color/white"
         android:fontFamily="@font/main_font_bold"
         android:textColor="@color/main_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,10 +25,10 @@
         android:id="@+id/btnAddBudgetBudgetFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         app:cardCornerRadius="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:cardElevation="4dp"
         app:rippleColor="@color/grey"
         app:cardBackgroundColor="@color/white"
@@ -74,11 +76,57 @@
         android:id="@+id/rcvBudgetBudgetFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAddBudgetBudgetFragment" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutEmptyBudgetBudgetFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgEmptyBoxBudgetFragment"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_empty_box"
+            android:contentDescription="@string/empty_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtLayoutEmptyTitleBudgetFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/main_font_bold"
+            android:textColor="@color/black"
+            android:text="@string/layout_empty_budget_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgEmptyBoxBudgetFragment" />
+
+        <TextView
+            android:id="@+id/txtLayoutEmptyDescriptionBudgetFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/layout_empty_budget_desc"
+            android:textSize="16sp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/main_font"
+            android:textColor="@color/brown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtLayoutEmptyTitleBudgetFragment" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,16 +9,14 @@ import com.example.moneylover.data.repository.TransactionRepository
 import com.example.moneylover.data.room.model.ExpenseCategoryWithTotal
 import com.example.moneylover.data.room.model.Transaction
 import com.example.moneylover.data.room.model.TransactionWithCategory
-import com.example.moneylover.data.room.model.Wallet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class TransactionViewModel(private val context: Application) : ViewModel() {
+class TransactionViewModel(context: Application) : ViewModel() {
     private val transactionRepository = TransactionRepository(context)
     private val _transactions = MutableStateFlow<List<TransactionWithCategory>>(emptyList())
     val transactions: StateFlow<List<TransactionWithCategory>> = _transactions

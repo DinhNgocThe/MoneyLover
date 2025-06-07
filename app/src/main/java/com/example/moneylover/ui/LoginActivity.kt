@@ -14,10 +14,12 @@ import com.example.moneylover.adapter.LoginViewPagerAdapter
 import com.example.moneylover.data.firebasemodel.GoogleAuthClient
 import com.example.moneylover.data.firebasemodel.UserFirebase
 import com.example.moneylover.data.firebasemodel.WalletFirebase
+import com.example.moneylover.data.room.model.Budget
 import com.example.moneylover.data.room.model.User
 import com.example.moneylover.data.room.model.Wallet
 import com.example.moneylover.databinding.ActivityLoginBinding
 import com.example.moneylover.ui.customview.CustomAlertDialog
+import com.example.moneylover.viewmodel.BudgetViewModel
 import com.example.moneylover.viewmodel.ExpenseCategoryViewModel
 import com.example.moneylover.viewmodel.TransactionViewModel
 import com.example.moneylover.viewmodel.UserViewModel
@@ -56,6 +58,12 @@ class LoginActivity : AppCompatActivity() {
             this,
             TransactionViewModel.TransactionViewModelFactory(this.application)
         )[TransactionViewModel::class.java]
+    }
+    private val budgetViewModel: BudgetViewModel by lazy {
+        ViewModelProvider(
+            this,
+            BudgetViewModel.BudgetViewModelFactory(this.application)
+        )[BudgetViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,6 +122,7 @@ class LoginActivity : AppCompatActivity() {
                         saveWalletToDb()
                         saveExpenseCategoriesToDb()
                         saveTransactionsToDb()
+                        saveBudgetToDb()
                     }
 
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -193,5 +202,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun saveTransactionsToDb() {
         transactionViewModel.getTransactionsFromFirestoreByUidAndSaveToRoom(firebaseAuth.currentUser?.uid ?: "")
+    }
+
+    private fun saveBudgetToDb() {
+        budgetViewModel.getBudgetsFromFirestoreByUidAndSaveToRoom(firebaseAuth.currentUser?.uid ?: "")
     }
 }

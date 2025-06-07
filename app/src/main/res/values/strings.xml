@@ -115,4 +115,12 @@
     <string name="amount_you_can_spend">Amount you can spend</string>
     <string name="total_budget">Total budget</string>
     <string name="total_spent">Total spent</string>
+    <string name="confirm_delete_budget">Are you sure you want to delete this budget?</string>
+    <string name="empty_box">Empty box</string>
+    <string name="layout_empty_budget_title">You don\'t have any budget</string>
+    <string name="layout_empty_budget_desc">Start saving money by creating your own budget</string>
+    <string name="create_budget">Create budget</string>
+    <string name="warning_budget">This budget will be applied monthly</string>
+    <string name="create">Create</string>
+    <string name="select_expense_type">Select expense type</string>
 </resources>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ui.budget.AddBudgetActivity">
+
+    <TextView
+        android:id="@+id/txtCreateBudgetAddBudgetActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/main_font_bold"
+        android:text="@string/create_budget"
+        android:textColor="@color/main_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnBackAddBudgetActivity"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@null"
+        android:contentDescription="@string/button_back"
+        android:padding="14dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow"
+        app:tint="@color/btn_image_ic" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAmountAddBudgetActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtCreateBudgetAddBudgetActivity">
+
+        <ImageView
+            android:id="@+id/imgVNDAddBudgetActivity"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/vnd"
+            app:srcCompat="@drawable/ic_vnd" />
+
+        <EditText
+            android:id="@+id/edtAmountAddBudgetActivity"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="10dp"
+            android:autofillHints="amount"
+            android:background="@drawable/edt_white"
+            android:fontFamily="@font/main_font_bold"
+            android:hint="@string/amount"
+            android:inputType="number"
+            android:maxLength="15"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/main_color"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewTypeAddBudgetActivity"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutAmountAddBudgetActivity"
+        app:rippleColor="?attr/colorControlHighlight"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/imgTypeAddBudgetActivity"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="12dp"
+                android:contentDescription="@string/type"
+                app:srcCompat="@drawable/ic_type" />
+
+            <TextView
+                android:id="@+id/txtTypeAddBudgetActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="1dp"
+                android:fontFamily="@font/main_font"
+                android:text="@string/select_group"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtWarningAddBudgetActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:fontFamily="@font/main_font"
+        android:textColor="@color/brown"
+        android:layout_marginTop="5dp"
+        android:text="@string/warning_budget"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewTypeAddBudgetActivity"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTypeAddBudgetActivity" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCreateAddBudgerActivity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/btn_green"
+        android:fontFamily="@font/main_font"
+        android:text="@string/create"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewTypeAddBudgetActivity" />
+</androidx.constraintlayout.widget.ConstraintLayout>

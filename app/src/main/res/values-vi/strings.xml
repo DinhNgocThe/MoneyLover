@@ -112,4 +112,12 @@
     <string name="amount_you_can_spend">Số tiền bạn có thể chi</string>
     <string name="total_budget">Tổng ngân sách</string>
     <string name="total_spent">Tổng đã chi</string>
+    <string name="confirm_delete_budget">Bạn có chắc chắn muốn xóa ngân sách này không?</string>
+    <string name="empty_box">Hộp rỗng</string>
+    <string name="layout_empty_budget_title">Bạn chưa có ngân sách nào</string>
+    <string name="layout_empty_budget_desc">Bắt đầu tiết kiệm chi tiêu bằng việc tạo ngân sách cho riêng mình</string>
+    <string name="create_budget">"Tạo ngân sách "</string>
+    <string name="warning_budget">Ngân sách này sẽ được áp dụng hàng tháng</string>
+    <string name="create">Tạo mới</string>
+    <string name="select_expense_type">Chọn loại chi tiêu</string>
 </resources>

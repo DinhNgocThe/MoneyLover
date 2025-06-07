@@ -7,7 +7,10 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,7 +36,7 @@
             android:fontFamily="@font/main_font_bold"
             android:text="@string/category_name"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imgCategoryItemRcvBudget"
             app:layout_constraintStart_toEndOf="@+id/imgCategoryItemRcvBudget"
             app:layout_constraintTop_toTopOf="@+id/imgCategoryItemRcvBudget" />
@@ -46,7 +49,7 @@
             android:fontFamily="@font/main_font"
             android:text="@string/amount_you_can_spend"
             android:textColor="@color/brown"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgCategoryItemRcvBudget" />
@@ -58,7 +61,7 @@
             android:fontFamily="@font/main_font_bold"
             android:text="@string/default_balance"
             android:textColor="@color/main_color"
-            android:textSize="20sp"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="@+id/txtAmountYouCanSpendItemRcvBudget"
             app:layout_constraintStart_toStartOf="@+id/txtAmountYouCanSpendItemRcvBudget"
             app:layout_constraintTop_toBottomOf="@+id/txtAmountYouCanSpendItemRcvBudget" />
@@ -73,66 +76,76 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRemainingAmountItemRcvBudget" />
 
-        <TextView
-            android:id="@+id/txtTotalBudgetItemRcvBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font"
-            android:text="@string/total_budget"
-            android:textColor="@color/brown"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/txtTotalItemRcvBudget"
-            app:layout_constraintStart_toStartOf="@+id/txtTotalItemRcvBudget"
-            app:layout_constraintTop_toBottomOf="@+id/txtTotalItemRcvBudget" />
-
-        <TextView
-            android:id="@+id/txtTotalItemRcvBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="30dp"
-            android:fontFamily="@font/main_font"
-            android:text="520,000"
-            android:textColor="@color/main_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/viewItemRcvBudget"
-            app:layout_constraintTop_toTopOf="@+id/viewItemRcvBudget" />
-
-        <TextView
-            android:id="@+id/txtSpentItemRcvBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginStart="30dp"
-            android:fontFamily="@font/main_font"
-            android:text="520,000"
-            android:textColor="@color/main_color"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/viewItemRcvBudget"
-            app:layout_constraintTop_toTopOf="@+id/viewItemRcvBudget" />
-
-        <TextView
-            android:id="@+id/txtSpentBudgetItemRcvBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/main_font"
-            android:text="@string/total_spent"
-            android:textColor="@color/brown"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/txtSpentItemRcvBudget"
-            app:layout_constraintStart_toStartOf="@+id/txtSpentItemRcvBudget"
-            app:layout_constraintTop_toBottomOf="@+id/txtSpentItemRcvBudget" />
-
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnDeleteBudgetBudgetFragment"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="8dp"
+            android:padding="10dp"
             android:scaleType="fitCenter"
             android:background="@null"
             android:contentDescription="@string/delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_delete" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewItemRcvBudget"
+            app:layout_constraintEnd_toStartOf="@+id/viewItemRcvBudget"
+            app:layout_constraintTop_toTopOf="@+id/viewItemRcvBudget">
+
+            <TextView
+                android:id="@+id/txtTotalItemRcvBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="@string/default_balance"
+                android:textColor="@color/main_color"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/txtTotalBudgetItemRcvBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="@string/total_budget"
+                android:textColor="@color/brown"
+                android:layout_gravity="center_horizontal"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/viewItemRcvBudget"
+            app:layout_constraintStart_toEndOf="@+id/viewItemRcvBudget"
+            app:layout_constraintTop_toTopOf="@+id/viewItemRcvBudget">
+
+            <TextView
+                android:id="@+id/txtSpentItemRcvBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="@string/default_balance"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/main_color"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtSpentBudgetItemRcvBudget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="@string/total_spent"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/brown"
+                android:textSize="14sp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
